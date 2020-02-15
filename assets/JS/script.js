@@ -28,23 +28,33 @@ var API_KEY = "NfI52qHKiCljm9rlRQrqpVYjFcVBlym6ORnKYSBcIQUlcZbzE0";
 
 // Navbar Hamburger 
 
-$(document).on('click', '.burger', function(){
-  $("#navbar-one").addClass("is-active please-close-me")
-  $("#navbar-two").addClass("is-active")
+// $(document).on('click', '.burger', function(){
+//   $("#navbar-one").addClass("is-active please-close-me")
+//   $("#navbar-two").addClass("is-active")
+// });
+
+// $(document).on('click', '.please-close-me', function(){
+//   $("#navbar-one").removeClass("is-active please-close-me")
+//   $("#navbar-two").removeClass("is-active")
+// });
+
+$(document).ready(function() {
+
+  // Check for click events on the navbar burger icon
+  $(".navbar-burger").click(function() {
+
+      // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+      $(".navbar-burger").toggleClass("is-active");
+      $(".navbar-menu").toggleClass("is-active");
+
+  });
 });
-
-$(document).on('click', '.please-close-me', function(){
-  $("#navbar-one").removeClass("is-active please-close-me")
-  $("#navbar-two").removeClass("is-active")
-});
-
-
     
 
 // Title Page
 
 function displayTitlePage (){
-  var mainEl = $("<div class='container has-text-centered'><h1 class='title is-1'>Welcome to MATCHMAKER</h1><p class='subtitle'>Do you long-for companionship? Find it here at MATCHMAKER, where we connect you with your future soulmate based on our 5min questionaire. Press the START button below to begin your odyssey of love.</p><button class='button is-danger is-size-4 has-text-weight-bold' id='start-button'>START</button></div>")
+  var mainEl = $("<div class='container has-text-centered' id='title-page-div'><h1 id='welcome-to-matchmaker' class='title is-1 sriracha'>Welcome to MATCHMAKER</h1><hr/><p id='title-page-subtext' class='subtitle mali'>Do you long-for companionship? Find it here at MATCHMAKER, where we connect you with your future soulmate based on our 5min questionaire. Press the START button below to begin your odyssey of love.</p><button class='button is-danger is-size-2 has-text-weight-bold sriracha' id='start-button'>START</button></div>")
   $('#main-body').append(mainEl);
   $(document).on('click', '#start-button', displayQuestionOneAtATime);
 }
@@ -95,11 +105,11 @@ var questionNumber=0;
 function displayQuestionOneAtATime(){
   $('#main-body').empty()
   if (questionNumber<questionsArray.length){
-  var headingQuestionEl = $("<div id='display-div' class='container'><h2 class='title is-3 has-text-centered'>"+ questionsArray[questionNumber].title +"</h2><div class='columns'></div></div>")
+  var headingQuestionEl = $("<div id='display-div' class='container'><h2 class='title is-3 has-text-centered sriracha'>"+ questionsArray[questionNumber].title +"</h2><div class='columns'></div></div>")
   $("#main-body").append(headingQuestionEl)
 
   for (var i=0; i<questionsArray[questionNumber].choices.length; i++){
-    var answerDiv = $("<div class='column has-text-centered is-size-4 has-background-danger'>"+ questionsArray[questionNumber].choices[i] +"</div>")
+    var answerDiv = $("<div class='column has-text-centered is-size-4'><button class='button is-danger is-size-3 has-text-weight-bold mali' id='answer-button'>"+ questionsArray[questionNumber].choices[i] +"</button></div>")
     $(".columns").append(answerDiv);
   }
   
@@ -111,7 +121,7 @@ function displayQuestionOneAtATime(){
     
 }
 
-$(document).on('click', '.column', click);
+$(document).on('click', '#answer-button', click);
 
 
 function click(event){
