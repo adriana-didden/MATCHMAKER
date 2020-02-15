@@ -22,3 +22,105 @@ var API_KEY = "NfI52qHKiCljm9rlRQrqpVYjFcVBlym6ORnKYSBcIQUlcZbzE0";
         console.log(response);
       });
     });
+
+
+
+
+// Navbar Hamburger 
+
+$(document).on('click', '.burger', function(){
+  $("#navbar-one").addClass("is-active please-close-me")
+  $("#navbar-two").addClass("is-active")
+});
+
+$(document).on('click', '.please-close-me', function(){
+  $("#navbar-one").removeClass("is-active please-close-me")
+  $("#navbar-two").removeClass("is-active")
+});
+
+
+    
+
+// Title Page
+
+function displayTitlePage (){
+  var mainEl = $("<div class='container has-text-centered'><h1 class='title is-1'>Welcome to MATCHMAKER</h1><p class='subtitle'>Do you long-for companionship? Find it here at MATCHMAKER, where we connect you with your future soulmate based on our 5min questionaire. Press the START button below to begin your odyssey of love.</p><button class='button is-danger is-size-4 has-text-weight-bold' id='start-button'>START</button></div>")
+  $('#main-body').append(mainEl);
+  $(document).on('click', '#start-button', displayQuestionOneAtATime);
+}
+displayTitlePage();
+
+
+// Questions 
+
+var questionsArray = [
+  {
+    title: "Commonly used data types DO NOT include:",
+    choices: ["strings", "booleans", "alerts", "numbers"],
+    
+  },
+  {
+    title: "The condition in an if / else statement is enclosed within ____.",
+    choices: ["quotes", "curly brackets", "parentheses", "square brackets"],
+    
+  },
+  {
+    title: "Arrays in JavaScript can be used to store ____.",
+    choices: [
+      "numbers and strings",
+      "other arrays",
+      "booleans",
+      "all of the above"
+    ],
+    
+  },
+  {
+    title: "String values must be enclosed within ____ when being assigned to variables.",
+    choices: ["commas", "curly brackets", "quotes", "parentheses"],
+    
+  },
+  {
+    title: "A very useful tool used during development and debugging for printing content to the debugger is:",
+    choices: ["JavaScript", "terminal / bash", "for loops", "console.log"],
+    
+  }
+];
+
+
+
+// question display functions
+
+var questionNumber=0;
+
+function displayQuestionOneAtATime(){
+  $('#main-body').empty()
+  if (questionNumber<questionsArray.length){
+  var headingQuestionEl = $("<div id='display-div' class='container'><h2 class='title is-3 has-text-centered'>"+ questionsArray[questionNumber].title +"</h2><div class='columns'></div></div>")
+  $("#main-body").append(headingQuestionEl)
+
+  for (var i=0; i<questionsArray[questionNumber].choices.length; i++){
+    var answerDiv = $("<div class='column has-text-centered is-size-4 has-background-danger'>"+ questionsArray[questionNumber].choices[i] +"</div>")
+    $(".columns").append(answerDiv);
+  }
+  
+}else{
+
+  // Add Code that moves to Match Page
+
+}
+    
+}
+
+$(document).on('click', '.column', click);
+
+
+function click(event){
+  event.preventDefault();
+  questionNumber++;
+  
+  
+  // ADD BACK-END CODE HERE that captures filter criteria
+  
+  
+  displayQuestionOneAtATime();
+}
