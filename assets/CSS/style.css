@@ -1,0 +1,72 @@
+.column {
+    margin: 20px;
+}
+.card {
+    margin:5px;
+    background-color: #C19AB7;
+    width:25%;
+}
+
+.columns{
+    margin:5px;
+}
+#answer-button {
+    width: 100%;
+}
+
+button:hover {
+    box-shadow: 0 12px 16px 0 rgba(248, 12, 3, 0.24), 0 17px 50px 0 rgba(248,12,3,0.24);
+}
+
+.navbar-item:hover {
+    box-shadow: 0 12px 16px 0 rgba(248, 12, 3, 0.24), 0 17px 50px 0 rgba(248,12,3,0.24);
+}
+
+nav {
+    margin-top: 10px;
+}
+
+.navbar-item {
+    border-radius: 4px;
+}
+
+#main-title, #title-page-div {
+    background-color: #2366d1;
+    border-radius: 4px;
+}
+
+#start-button {
+    margin-bottom: 20px;
+}
+
+#welcome-to-matchmaker {
+    margin-top: 15px;
+    margin-bottom: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.sriracha {
+    font-family: 'Sriracha', cursive;
+}
+
+.mali {
+    font-family: 'Mali', cursive;
+}
+
+hr {
+    display: block;
+    height: 2px;
+    border: 0;
+    border-top: 1px solid #ffffff;
+    margin: 0 auto 10px auto;
+    padding: 0;
+    opacity: 0.5;
+    width: 55%;
+    align-content: center;
+}
+
+#title-page-subtext {
+    padding-right: 15px;
+    padding-left: 15px;
+}
