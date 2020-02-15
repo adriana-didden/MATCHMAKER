@@ -13,7 +13,7 @@ var API_KEY = "NfI52qHKiCljm9rlRQrqpVYjFcVBlym6ORnKYSBcIQUlcZbzE0";
       var token = response.access_token;
 
       $.ajax({
-        url: "https://api.petfinder.com/v2/animals?type=dog",
+        url: "https://api.petfinder.com/v2/animals?",
         method: "GET",
         headers: {
           "Authorization": "Bearer " + token
