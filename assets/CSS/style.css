@@ -1,6 +1,4 @@
-/* .column {
-    margin: 20px;
-} */
+
 .card {
     margin:5px;
     background-color: #C19AB7;
@@ -79,4 +77,15 @@ footer{
 
 #display-div, #answer-colums {
     width: 100%;
+}
+
+#footer-css {
+    background-color: #2366d1;
+    padding: 12px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+#footer-text {
+    opacity: 0.75;
 }
