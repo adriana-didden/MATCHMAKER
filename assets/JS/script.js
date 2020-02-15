@@ -25,8 +25,30 @@ var API_KEY = "NfI52qHKiCljm9rlRQrqpVYjFcVBlym6ORnKYSBcIQUlcZbzE0";
 
 
 
+
+// Navbar Hamburger 
+
+$(document).on('click', '.burger', function(){
+  $("#navbar-one").addClass("is-active please-close-me")
+  $("#navbar-two").addClass("is-active")
+});
+
+$(document).on('click', '.please-close-me', function(){
+  $("#navbar-one").removeClass("is-active please-close-me")
+  $("#navbar-two").removeClass("is-active")
+});
+
+
+    
+
 // Title Page
 
+function displayTitlePage (){
+
+  var mainEl = $("")
+
+
+}
 
 
 
@@ -73,3 +95,36 @@ var questions = [
 
 
 
+function displayQuestions(){
+  var questionNumber=0;
+  if (questionNumber<questions.length){
+  
+  // mainEl.innerHTML = "";
+  // response.innerHTML = "";
+  var questionHeading = document.createElement("h2");
+  mainEl.appendChild(questionHeading);
+  questionHeading.textContent = questions[questionNumber].title
+
+
+  var olEl = document.createElement("ol");
+      mainEl.appendChild(olEl);
+
+  response = document.createElement("p")
+  body.appendChild(response);
+  response.style.position = "fixed"
+  response.style.bottom = "10px"
+  response.style.left = "30px"
+
+  for (var i = 0; i < questions[questionNumber].choices.length; i++){
+      var qu = questions[questionNumber].choices[i];
+      var liEl = document.createElement("li");
+      olEl.appendChild(liEl);
+      var button = document.createElement("button");
+      liEl.appendChild(button);
+      button.textContent = qu;
+      button.addEventListener("click", click)
+      // console.log(qu)
+      // console.log(questions[questionNumber].answer)     
+  } 
+}
+}
