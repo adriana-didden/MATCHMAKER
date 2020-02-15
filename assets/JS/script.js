@@ -109,7 +109,7 @@ function displayQuestionOneAtATime(){
   $("#main-body").append(headingQuestionEl)
 
   for (var i=0; i<questionsArray[questionNumber].choices.length; i++){
-    var answerDiv = $("<div class='column has-text-centered is-size-4'><button class='button is-danger is-size-3 has-text-weight-bold mali' id='answer-button'>"+ questionsArray[questionNumber].choices[i] +"</button></div>")
+    var answerDiv = $("<div class='column has-text-centered'><button class='button is-danger has-text-weight-bold mali' id='answer-button'>"+ questionsArray[questionNumber].choices[i] +"</button></div>")
     $(".columns").append(answerDiv);
   }
   
