@@ -11,7 +11,7 @@ var API_KEY = "NfI52qHKiCljm9rlRQrqpVYjFcVBlym6ORnKYSBcIQUlcZbzE0";
       }
     }).then(function (response) {
       var token = response.access_token;
-
+      
       $.ajax({
         url: "https://api.petfinder.com/v2/animals?type=dog",
         method: "GET",
