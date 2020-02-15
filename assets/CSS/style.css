@@ -4,7 +4,7 @@
 .card {
     margin:5px;
     background-color: #C19AB7;
-    width:25%;
+    width:200px;
 }
 
 .columns{
@@ -69,4 +69,9 @@ hr {
 #title-page-subtext {
     padding-right: 15px;
     padding-left: 15px;
+}
+footer{
+    position: fixed;
+    bottom:0px;
+    color:white;
 }
