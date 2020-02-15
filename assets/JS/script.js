@@ -45,15 +45,19 @@ $(document).on('click', '.please-close-me', function(){
 
 function displayTitlePage (){
 
-  var mainEl = $("")
+  var mainEl = $("<div class='container has-text-centered'><h1 class='title is-1'>Welcome to MATCHMAKER</h1><p class='subtitle'>Do you long-for companionship? Find it here at MATCHMAKER, where we connect you with your future soulmate based on our 5min questionaire. Press the START button below to begin your odyssey of love.</p><button class='button is-danger is-size-4 has-text-weight-bold' id='start-button'>START</button></div>")
+  $('#main-body').append(mainEl);
+  $(document).on('click', '#start-button', displayQuestionOneAtATime);
+  
 
 
 }
-
+displayTitlePage();
 
 
 // Questions 
-var questions = [
+
+var questionsArray = [
   {
     title: "Commonly used data types DO NOT include:",
     choices: ["strings", "booleans", "alerts", "numbers"],
@@ -91,40 +95,37 @@ var questions = [
 
 
 // question display functions
+var questionNumber=0;
+function displayQuestionOneAtATime(){
+  $('#main-body').empty()
 
-
-
-
-function displayQuestions(){
-  var questionNumber=0;
-  if (questionNumber<questions.length){
   
-  // mainEl.innerHTML = "";
-  // response.innerHTML = "";
-  var questionHeading = document.createElement("h2");
-  mainEl.appendChild(questionHeading);
-  questionHeading.textContent = questions[questionNumber].title
+if(questionNumber<questionsArray.length){
+  var headingQuestionEl = $("<div id='display-div' class='container'><h2 class='title is-3 has-text-centered'>"+ questionsArray[questionNumber].title +"</h2></div>")
+  $("#main-body").append(headingQuestionEl)
 
 
-  var olEl = document.createElement("ol");
-      mainEl.appendChild(olEl);
 
-  response = document.createElement("p")
-  body.appendChild(response);
-  response.style.position = "fixed"
-  response.style.bottom = "10px"
-  response.style.left = "30px"
 
-  for (var i = 0; i < questions[questionNumber].choices.length; i++){
-      var qu = questions[questionNumber].choices[i];
-      var liEl = document.createElement("li");
-      olEl.appendChild(liEl);
-      var button = document.createElement("button");
-      liEl.appendChild(button);
-      button.textContent = qu;
-      button.addEventListener("click", click)
-      // console.log(qu)
-      // console.log(questions[questionNumber].answer)     
-  } 
+//   var olEl = document.createElement("ol");
+//       mainEl.appendChild(olEl);
+
+//   response = document.createElement("p")
+//   body.appendChild(response);
+//   response.style.position = "fixed"
+//   response.style.bottom = "10px"
+//   response.style.left = "30px"
+
+//   for (var i = 0; i < questionsArray[questionNumber].choices.length; i++){
+//       var qu = questionsArray[questionNumber].choices[i];
+//       var liEl = document.createElement("li");
+//       olEl.appendChild(liEl);
+//       var button = document.createElement("button");
+//       liEl.appendChild(button);
+//       button.textContent = qu;
+//       button.addEventListener("click", click)
+//       // console.log(qu)
+//       // console.log(questionsArray[questionNumber].answer)     
+//   } 
 }
 }
