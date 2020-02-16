@@ -204,4 +204,4 @@ function click(event){
 //       window.location.replace("./match-history.html")
       
 // }
-
+}
