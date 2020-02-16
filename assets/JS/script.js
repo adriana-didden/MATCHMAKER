@@ -23,7 +23,7 @@ var API_KEY = "NfI52qHKiCljm9rlRQrqpVYjFcVBlym6ORnKYSBcIQUlcZbzE0";
 //       }).then(function (response) {
 //         console.log(response);
 //       });
-//     });
+    });
 
 
 
@@ -203,5 +203,3 @@ function click(event){
 //       localStorage.setItem("matchStorage", JSON.stringify(matchStorage))
 //       window.location.replace("./match-history.html")
       
-// }
-}
