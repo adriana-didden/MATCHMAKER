@@ -55,37 +55,33 @@ displayTitlePage();
 
 var questionsArray = [
   {
-    title: "Commonly used data types DO NOT include:",
-    choices: ["strings", "booleans", "alerts", "numbers"],
-    
+    title: "What fits you best:",
+    choices: ["Man looking for a woman", "Woman looking for a man", "Man looking for a man", "Woman looking for a woman"],
+    //object.animals.0.colors.gender[2] "male"
   },
   {
-    title: "The condition in an if / else statement is enclosed within ____.",
-    choices: ["quotes", "curly brackets", "parentheses", "square brackets"],
-    
+    title: "What are your thoughts on children?",
+    choices: ["Want someday", "Don't want", "Have and want more", "Have and don't want more"],
+    //object.animals.0.envirenment: {children: true, dogs: true, cats: null}
   },
   {
-    title: "Arrays in JavaScript can be used to store ____.",
-    choices: [
-      "numbers and strings",
-      "other arrays",
-      "booleans",
-      "all of the above"
+    title: "What are you seeking?",
+    choices: ["Relationship", "Something casual", "Don't know yet", "marriage"
     ],
-    
+    //object.animals.0.photos.status: "adoptable"
   },
   {
-    title: "String values must be enclosed within ____ when being assigned to variables.",
-    choices: ["commas", "curly brackets", "quotes", "parentheses"],
-    
+    title: "What describes you best?",
+    choices: ["Neat freak", "Messy", "Clean but cluttered", "Easy going either way"],
+    //object.animals.0.attributes: house-trained: "true"
   },
   {
-    title: "A very useful tool used during development and debugging for printing content to the debugger is:",
-    choices: ["JavaScript", "terminal / bash", "for loops", "console.log"],
+    title: "What song fits you best?",
+    choices: ["Billie Eilish - bad guy", "Lil Bow Wow - Bow Wow (That's My Name) ft. Snoop Dogg", "Alicia Keys - Underdog", "Baha Men - Who Let The Dogs Out "],
     
   }
 ];
-
+//object.animals.0.contact:{all info} for display with approved match
 
 
 // question display functions
@@ -168,6 +164,7 @@ function click(event){
 //       window.location.replace("./match-history.html")
       
 // }
+
 
 
 
