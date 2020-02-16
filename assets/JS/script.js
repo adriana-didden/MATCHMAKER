@@ -1,30 +1,7 @@
-// var API_KEY = "NfI52qHKiCljm9rlRQrqpVYjFcVBlym6ORnKYSBcIQUlcZbzE0";
-//     var API_SECRET = "7rcHAiljchDTvoTalPnj6rjlplPpfV8l7e8siAmB";
-
-//     $.ajax({
-//       url: "https://api.petfinder.com/v2/oauth2/token",
-//       method: "POST",
-//       data: {
-//         grant_type: "client_credentials",
-//         client_id: API_KEY,
-//         client_secret: API_SECRET
-//       }
-//     }).then(function (response) {
-//       var token = response.access_token;
-      
-//       $.ajax({
-//         url: "https://api.petfinder.com/v2/animals?type=dog",
-//         method: "GET",
-//         headers: {
-//           "Authorization": "Bearer " + token
-//         }
-//       }).then(function (response) {
-//         console.log(response);
-//       });
-//     });
-
-
-
+var pf = new petfinder.Client({
+  apiKey: "rfKtqLNMX2qtPkyR7cDRNWJgJwJ3kxAyzoJzYFwvt1S7IB3Hnb",
+  secret: "NGBUpIOll0vatwymXSITahluWEoK6W0hWyyBSvCN"
+});
 
 // Navbar Hamburger 
 
@@ -65,14 +42,13 @@ var questionsArray = [
     //object.animals.0.envirenment: {children: true, dogs: true, cats: null}
   },
   {
-    title: "What are you seeking?",
-    choices: ["Relationship", "Something casual", "Don't know yet", "marriage"
-    ],
+    title: "What is your preferred style?",
+    choices: ["Preppy", "Hipster", "Casual", "Trendy"],
     //object.animals.0.photos.status: "adoptable"
   },
   {
-    title: "What describes you best?",
-    choices: ["Neat freak", "Messy", "Clean but cluttered", "Easy going either way"],
+    title: "What is your preferred body type?",
+    choices: ["Slender", "Big and beautiful", "About average", "Athletic and toned"],
     //object.animals.0.attributes: house-trained: "true"
   },
   {
@@ -116,13 +92,82 @@ function click(event){
   answers.push(this.textContent);
    
   displayQuestionOneAtATime();
+  filter();
 };
- 
+
+function filter() {
   // ADD BACK-END CODE HERE that captures filter criteria
-  
+var answer1 = answers[0];  //looking for male or female
+var answer2 = answers[1];
+var answer3 = answers[2];
+var answer4 = answers[3];
+var answer5 = answers[4];
+var searchGender;
+var goodWithChildren;
+var dogSize;
+var coatType;
+var goodWithCats;
+
+//["Man looking for a woman", "Woman looking for a man", "Man looking for a man", "Woman looking for a woman"],
+if (answer1 === "Man looking for a woman" || answer1 === "Woman looking for a woman") {
+  searchGender = "female";
+} else {searchGender = "male"}
+
+//["Want someday", "Don't want", "Have and want more", "Have and don't want more"]
+if (answer2 === "Don't want") {
+  goodWithChildren = false;
+} else {goodWithChildren = true}
 
 
+// "What is your preferred style?",choices: [short, medium, long, wire,"Preppy" medium, "Hipster" wire, "Casual" short hair, "Trendy" long ]
+if (answer3 === "Preppy") {
+  coatType = "medium";
+} else if (answer3 === "Hipster") {
+  coatType = "wire";
+} else if (answer3 === "Casual") {
+  coatType = "short";
+} else if (answer3 === "Trendy") {
+  coatType = "long";
+}
 
+//["Slender", "Big and beautiful" xlarge, "About average" large, "Athletic and toned" medium: small, medium, large, xlarge]
+if (answer4 === "Slender") {
+  dogSize = "small";
+} else if (answer4 === "Big and beautiful") {
+  dogSize = "xlarge";
+} else if (answer4 === "About average") {
+  dogSize = "large";
+} else if (answer4 === "Athletic and toned") {
+  dogSize = "medium";
+}
+
+//["Billie Eilish - bad guy", "Lil Bow Wow - Bow Wow (That's My Name) ft. Snoop Dogg", "Alicia Keys - Underdog", "Baha Men - Who Let The Dogs Out "]
+if (answer5 === "Billie Eilish - bad guy") {
+  goodWithCats = true;
+} else {
+  goodWithCats = false;
+}
+
+buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWithCats);
+
+}
+
+
+function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWithCats) {
+
+  pf.animal.search({ type: "dog", location: "NC", gender: searchGender, good_with_children: goodWithChildren, coat: coatType, size: dogSize, good_with_cats: goodWithCats})
+  .then(function (response) {
+      var responseArr = response.data;
+      // for (var i = 0; i < responseArr.length; i++)
+      // console.log(response.data.animals[0].contact);
+      //console.log(response.data)
+      console.log(response.data);
+  })
+  .catch(function (error) {
+      console.log(error);
+  });
+
+}
 
 
 // Match History
