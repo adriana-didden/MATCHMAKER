@@ -137,18 +137,20 @@ function click(event){
   filter();
 };
 
-function filter() {
-  // ADD BACK-END CODE HERE that captures filter criteria
-var answer1 = answers[0];  //looking for male or female
-var answer2 = answers[1];
-var answer3 = answers[2];
-var answer4 = answers[3];
-var answer5 = answers[4];
 var searchGender;
 var goodWithChildren;
 var dogSize;
 var coatType;
 var goodWithCats;
+
+function filter() {
+  // ADD BACK-END CODE HERE that captures filter criteria
+var answer1 = answers[0];  
+var answer2 = answers[1];
+var answer3 = answers[2];
+var answer4 = answers[3];
+var answer5 = answers[4];
+
 
 //["Man looking for a woman", "Woman looking for a man", "Man looking for a man", "Woman looking for a woman"],
 if (answer1 === "Man looking for a woman" || answer1 === "Woman looking for a woman") {
@@ -190,7 +192,7 @@ if (answer5 === "Billie Eilish - bad guy") {
   goodWithCats = false;
 }
 
-buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWithCats);
+// buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWithCats);
 
 }
 
@@ -211,6 +213,7 @@ function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWit
 
 }
 
+buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWithCats);
 
 // Match History
 
