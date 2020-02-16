@@ -28,12 +28,6 @@ function displayTitlePage (){
 displayTitlePage();
 
 
-// Carousel 
-
-// bulmaCarousel.attach('#carousel-demo', {
-//   slidesToScroll: 1,
-//   slidesToShow: 4
-// });
 
 // Slideshow
 
@@ -137,11 +131,7 @@ function click(event){
   filter();
 };
 
-var searchGender;
-var goodWithChildren;
-var dogSize;
-var coatType;
-var goodWithCats;
+
 
 function filter() {
   // ADD BACK-END CODE HERE that captures filter criteria
@@ -150,7 +140,11 @@ var answer2 = answers[1];
 var answer3 = answers[2];
 var answer4 = answers[3];
 var answer5 = answers[4];
-
+var searchGender;
+var goodWithChildren;
+var dogSize;
+var coatType;
+var goodWithCats;
 
 //["Man looking for a woman", "Woman looking for a man", "Man looking for a man", "Woman looking for a woman"],
 if (answer1 === "Man looking for a woman" || answer1 === "Woman looking for a woman") {
@@ -166,9 +160,11 @@ if (answer2 === "Don't want") {
 // "What is your preferred style?",choices: [short, medium, long, wire,"Preppy" medium, "Hipster" wire, "Casual" short hair, "Trendy" long ]
 if (answer3 === "Preppy") {
   coatType = "medium";
-} else if (answer3 === "Hipster") {
-  coatType = "wire";
-} else if (answer3 === "Casual") {
+} 
+// else if (answer3 === "Hipster") {
+//   coatType = "wire";
+// } 
+else if (answer3 === "Casual") {
   coatType = "short";
 } else if (answer3 === "Trendy") {
   coatType = "long";
@@ -192,8 +188,11 @@ if (answer5 === "Billie Eilish - bad guy") {
   goodWithCats = false;
 }
 
+if (questionNumber === questionsArray.length){
+  buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWithCats);
+  console.log(searchGender)
+}
 // buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWithCats);
-
 }
 
 
@@ -208,12 +207,12 @@ function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWit
       console.log(response.data);
   })
   .catch(function (error) {
-      console.log(error);
+      // console.log(error);
   });
 
 }
 
-buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWithCats);
+// buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWithCats);
 
 // Match History
 
