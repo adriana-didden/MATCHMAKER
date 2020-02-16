@@ -109,22 +109,18 @@ function displayQuestionOneAtATime(){
 
 $(document).on('click', '#answer-button', click);
 
-
+var answers = [];
 function click(event){
   event.preventDefault();
   questionNumber++;
-  console.log(this.textContent);
-  
-  
+  answers.push(this.textContent);
+   
   displayQuestionOneAtATime();
-
-
 };
  
   // ADD BACK-END CODE HERE that captures filter criteria
   
-  
-  displayQuestionOneAtATime();
+
 
 
 
