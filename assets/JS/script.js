@@ -1,42 +1,32 @@
-var API_KEY = "NfI52qHKiCljm9rlRQrqpVYjFcVBlym6ORnKYSBcIQUlcZbzE0";
-    var API_SECRET = "7rcHAiljchDTvoTalPnj6rjlplPpfV8l7e8siAmB";
+// var API_KEY = "NfI52qHKiCljm9rlRQrqpVYjFcVBlym6ORnKYSBcIQUlcZbzE0";
+//     var API_SECRET = "7rcHAiljchDTvoTalPnj6rjlplPpfV8l7e8siAmB";
 
-    $.ajax({
-      url: "https://api.petfinder.com/v2/oauth2/token",
-      method: "POST",
-      data: {
-        grant_type: "client_credentials",
-        client_id: API_KEY,
-        client_secret: API_SECRET
-      }
-    }).then(function (response) {
-      var token = response.access_token;
+//     $.ajax({
+//       url: "https://api.petfinder.com/v2/oauth2/token",
+//       method: "POST",
+//       data: {
+//         grant_type: "client_credentials",
+//         client_id: API_KEY,
+//         client_secret: API_SECRET
+//       }
+//     }).then(function (response) {
+//       var token = response.access_token;
       
-      $.ajax({
-        url: "https://api.petfinder.com/v2/animals?type=dog",
-        method: "GET",
-        headers: {
-          "Authorization": "Bearer " + token
-        }
-      }).then(function (response) {
-        console.log(response);
-      });
-    });
+//       $.ajax({
+//         url: "https://api.petfinder.com/v2/animals?type=dog",
+//         method: "GET",
+//         headers: {
+//           "Authorization": "Bearer " + token
+//         }
+//       }).then(function (response) {
+//         console.log(response);
+//       });
+//     });
 
 
 
 
 // Navbar Hamburger 
-
-// $(document).on('click', '.burger', function(){
-//   $("#navbar-one").addClass("is-active please-close-me")
-//   $("#navbar-two").addClass("is-active")
-// });
-
-// $(document).on('click', '.please-close-me', function(){
-//   $("#navbar-one").removeClass("is-active please-close-me")
-//   $("#navbar-two").removeClass("is-active")
-// });
 
 $(document).ready(function() {
 
@@ -54,7 +44,7 @@ $(document).ready(function() {
 // Title Page
 
 function displayTitlePage (){
-  var mainEl = $("<div class='container has-text-centered' id='title-page-div'><h1 id='welcome-to-matchmaker' class='title is-1 sriracha'>Welcome to MATCHMAKER</h1><hr/><p id='title-page-subtext' class='subtitle mali'>Do you long-for companionship? Find it here at MATCHMAKER, where we connect you with your future soulmate based on our 5min questionaire. Press the START button below to begin your odyssey of love.</p><button class='button is-danger is-size-2 has-text-weight-bold sriracha' id='start-button'>START</button></div>")
+  var mainEl = $("<div class='container has-text-centered' id='title-page-div'><h1 id='welcome-to-matchmaker' class='title is-1 sriracha'>Welcome to MATCHMAKER</h1><hr/><p id='title-page-subtext' class='subtitle mali'>Do you long-for companionship? Find it here at MATCHMAKER, where we connect you with your future soulmate based on our 5 minute questionaire. Press the START button below to begin your odyssey of love.</p><button class='button is-danger is-size-2 has-text-weight-bold sriracha' id='start-button'>START</button></div>")
   $('#main-body').append(mainEl);
   $(document).on('click', '#start-button', displayQuestionOneAtATime);
 }
@@ -105,7 +95,7 @@ var questionNumber=0;
 function displayQuestionOneAtATime(){
   $('#main-body').empty()
   if (questionNumber<questionsArray.length){
-  var headingQuestionEl = $("<div id='display-div' class='container'><h2 class='title is-3 has-text-centered sriracha'>"+ questionsArray[questionNumber].title +"</h2><div class='columns'></div></div>")
+  var headingQuestionEl = $("<div id='display-div' class='container'><h2 class='title has-text-centered sriracha'>"+ questionsArray[questionNumber].title +"</h2><div id='answer-colums' class='columns'></div></div>")
   $("#main-body").append(headingQuestionEl)
 
   for (var i=0; i<questionsArray[questionNumber].choices.length; i++){
@@ -127,10 +117,58 @@ $(document).on('click', '#answer-button', click);
 function click(event){
   event.preventDefault();
   questionNumber++;
+  console.log(this.textContent);
   
   
+  displayQuestionOneAtATime();
+
+
+};
+ 
   // ADD BACK-END CODE HERE that captures filter criteria
   
   
   displayQuestionOneAtATime();
-}
+
+
+
+
+// Match History
+
+
+
+
+// function renderMatchHistory(event) {
+//   event.preventDefault();
+//   let matchStorage = JSON.parse(localStorage.getItem("matchStorage")) 
+
+//   if(matchStorage){
+//     matchStorage.sort(function(/* ADD HERE */){
+//       // ADD HERE
+//     })
+//     for (var i=0; i < matchStorage.length; i++){
+//       // ADD HERE
+//     }
+//   }
+
+// }
+
+// function saveToLocalStorage(event){
+//   event.preventDefault();
+//   $("").empty();
+ 
+//   var matchStorage = JSON.parse(localStorage.getItem("matchStorage"))
+//   var intials = document.getElementById("intials");
+
+//   if (!matchStorage){matchStorage = []};
+//   var matchObject = {/*Fill with key value pairs*/}
+   
+//   matchStorage.push(matchObject);
+//       localStorage.setItem("matchStorage", JSON.stringify(matchStorage))
+//       window.location.replace("./match-history.html")
+      
+// }
+
+
+
+
