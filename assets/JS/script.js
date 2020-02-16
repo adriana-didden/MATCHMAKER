@@ -103,7 +103,7 @@ function displayQuestionOneAtATime(){
   $('#main-body').empty();
   $('#slideshow').remove();
   if (questionNumber<questionsArray.length){
-  var headingQuestionEl = $("<div id='display-div' class='container'><h2 class='title has-text-centered sriracha'>"+ questionsArray[questionNumber].title +"</h2><div id='answer-colums' class='columns'></div></div>")
+  var headingQuestionEl = $("<div id='display-div' class='container'><h2 class='title has-text-centered sriracha'>"+ questionsArray[questionNumber].title +"</h2><div id='answer-columns' class='columns'></div></div>")
   $("#main-body").append(headingQuestionEl)
 
   for (var i=0; i<questionsArray[questionNumber].choices.length; i++){
@@ -114,6 +114,7 @@ function displayQuestionOneAtATime(){
 }else{
 
   // Add Code that moves to Match Page
+  
 
 }
     

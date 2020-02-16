@@ -2,13 +2,14 @@
 .card {
     margin:5px;
     background-color: #C19AB7;
-    width:200px;
+    width:300px;
     height: 118px;
 }
 
 .columns{
     margin:5px;
 }
+
 #answer-button {
     width: 100%;
 }
