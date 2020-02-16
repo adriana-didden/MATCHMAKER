@@ -3,6 +3,7 @@
     margin:5px;
     background-color: #C19AB7;
     width:200px;
+    height: 118px;
 }
 
 .columns{
@@ -75,7 +76,7 @@ footer{
     color:white;
 }
 
-#display-div, #answer-colums {
+#display-div, #answer-columns {
     width: 100%;
 }
 
