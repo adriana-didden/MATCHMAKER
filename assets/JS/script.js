@@ -1,16 +1,18 @@
-// var API_KEY = "NfI52qHKiCljm9rlRQrqpVYjFcVBlym6ORnKYSBcIQUlcZbzE0";
-//     var API_SECRET = "7rcHAiljchDTvoTalPnj6rjlplPpfV8l7e8siAmB";
+console.log(window)
 
-//     $.ajax({
-//       url: "https://api.petfinder.com/v2/oauth2/token",
-//       method: "POST",
-//       data: {
-//         grant_type: "client_credentials",
-//         client_id: API_KEY,
-//         client_secret: API_SECRET
-//       }
-//     }).then(function (response) {
-//       var token = response.access_token;
+var API_KEY = "NfI52qHKiCljm9rlRQrqpVYjFcVBlym6ORnKYSBcIQUlcZbzE0";
+    var API_SECRET = "7rcHAiljchDTvoTalPnj6rjlplPpfV8l7e8siAmB";
+
+    $.ajax({
+      url: "https://api.petfinder.com/v2/oauth2/token",
+      method: "POST",
+      data: {
+        grant_type: "client_credentials",
+        client_id: API_KEY,
+        client_secret: API_SECRET
+      }
+    }).then(function (response) {
+      var token = response.access_token;
       
 //       $.ajax({
 //         url: "https://api.petfinder.com/v2/animals?type=dog",
@@ -51,6 +53,47 @@ function displayTitlePage (){
 displayTitlePage();
 
 
+// Carousel 
+
+// bulmaCarousel.attach('#carousel-demo', {
+//   slidesToScroll: 1,
+//   slidesToShow: 4
+// });
+
+// Slideshow
+
+var slideIndex = 1;
+showSlides(slideIndex);
+
+// Next/previous controls
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+// Thumbnail image controls
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+}
+
+
+
+
 // Questions 
 
 var questionsArray = [
@@ -89,7 +132,8 @@ var questionsArray = [
 var questionNumber=0;
 
 function displayQuestionOneAtATime(){
-  $('#main-body').empty()
+  $('#main-body').empty();
+  $('#slideshow').remove();
   if (questionNumber<questionsArray.length){
   var headingQuestionEl = $("<div id='display-div' class='container'><h2 class='title has-text-centered sriracha'>"+ questionsArray[questionNumber].title +"</h2><div id='answer-colums' class='columns'></div></div>")
   $("#main-body").append(headingQuestionEl)
@@ -160,8 +204,4 @@ function click(event){
 //       window.location.replace("./match-history.html")
       
 // }
-
-
-
-
-
+}
