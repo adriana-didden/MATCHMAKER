@@ -65,14 +65,14 @@ var questionsArray = [
     //object.animals.0.envirenment: {children: true, dogs: true, cats: null}
   },
   {
-    title: "What are you seeking?",
-    choices: ["Relationship", "Something casual", "Don't know yet", "marriage"
+    title: "What is your preferred style?",
+    choices: ["Preppy", "Hipster", "Casual", "Trendy"
     ],
     //object.animals.0.photos.status: "adoptable"
   },
   {
-    title: "What describes you best?",
-    choices: ["Neat freak", "Messy", "Clean but cluttered", "Easy going either way"],
+    title: "What is your preferred body type?",
+    choices: ["Slender", "Big and beautiful", "About average", "Athletic and toned"],
     //object.animals.0.attributes: house-trained: "true"
   },
   {
@@ -91,7 +91,7 @@ var questionNumber=0;
 function displayQuestionOneAtATime(){
   $('#main-body').empty()
   if (questionNumber<questionsArray.length){
-  var headingQuestionEl = $("<div id='display-div' class='container'><h2 class='title has-text-centered sriracha'>"+ questionsArray[questionNumber].title +"</h2><div id='answer-colums' class='columns'></div></div>")
+  var headingQuestionEl = $("<div id='display-div' class='container'><h2 class='title has-text-centered sriracha'>"+ questionsArray[questionNumber].title +"</h2><div id='answer-columns' class='columns'></div></div>")
   $("#main-body").append(headingQuestionEl)
 
   for (var i=0; i<questionsArray[questionNumber].choices.length; i++){
@@ -102,6 +102,7 @@ function displayQuestionOneAtATime(){
 }else{
 
   // Add Code that moves to Match Page
+  
 
 }
     
