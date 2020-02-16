@@ -28,16 +28,6 @@ var API_KEY = "NfI52qHKiCljm9rlRQrqpVYjFcVBlym6ORnKYSBcIQUlcZbzE0";
 
 // Navbar Hamburger 
 
-// $(document).on('click', '.burger', function(){
-//   $("#navbar-one").addClass("is-active please-close-me")
-//   $("#navbar-two").addClass("is-active")
-// });
-
-// $(document).on('click', '.please-close-me', function(){
-//   $("#navbar-one").removeClass("is-active please-close-me")
-//   $("#navbar-two").removeClass("is-active")
-// });
-
 $(document).ready(function() {
 
   // Check for click events on the navbar burger icon
@@ -54,7 +44,7 @@ $(document).ready(function() {
 // Title Page
 
 function displayTitlePage (){
-  var mainEl = $("<div class='container has-text-centered' id='title-page-div'><h1 id='welcome-to-matchmaker' class='title is-1 sriracha'>Welcome to MATCHMAKER</h1><hr/><p id='title-page-subtext' class='subtitle mali'>Do you long-for companionship? Find it here at MATCHMAKER, where we connect you with your future soulmate based on our 5min questionaire. Press the START button below to begin your odyssey of love.</p><button class='button is-danger is-size-2 has-text-weight-bold sriracha' id='start-button'>START</button></div>")
+  var mainEl = $("<div class='container has-text-centered' id='title-page-div'><h1 id='welcome-to-matchmaker' class='title is-1 sriracha'>Welcome to MATCHMAKER</h1><hr/><p id='title-page-subtext' class='subtitle mali'>Do you long-for companionship? Find it here at MATCHMAKER, where we connect you with your future soulmate based on our 5 minute questionaire. Press the START button below to begin your odyssey of love.</p><button class='button is-danger is-size-2 has-text-weight-bold sriracha' id='start-button'>START</button></div>")
   $('#main-body').append(mainEl);
   $(document).on('click', '#start-button', displayQuestionOneAtATime);
 }
@@ -134,3 +124,45 @@ function click(event){
   
   displayQuestionOneAtATime();
 }
+
+
+
+// Match History
+
+
+
+
+// function renderMatchHistory(event) {
+//   event.preventDefault();
+//   let matchStorage = JSON.parse(localStorage.getItem("matchStorage")) 
+
+//   if(matchStorage){
+//     matchStorage.sort(function(/* ADD HERE */){
+//       // ADD HERE
+//     })
+//     for (var i=0; i < matchStorage.length; i++){
+//       // ADD HERE
+//     }
+//   }
+
+// }
+
+// function saveToLocalStorage(event){
+//   event.preventDefault();
+//   $("").empty();
+ 
+//   var matchStorage = JSON.parse(localStorage.getItem("matchStorage"))
+//   var intials = document.getElementById("intials");
+
+//   if (!matchStorage){matchStorage = []};
+//   var matchObject = {/*Fill with key value pairs*/}
+   
+//   matchStorage.push(matchObject);
+//       localStorage.setItem("matchStorage", JSON.stringify(matchStorage))
+//       window.location.replace("./match-history.html")
+      
+// }
+
+
+
+
