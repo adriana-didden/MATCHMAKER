@@ -213,9 +213,12 @@ function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWit
 
 }
 
-buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWithCats);
+if (questionNumber === questionsArray.length) {
+// buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWithCats);
 
+}
 // Match History
+
 
 
 
