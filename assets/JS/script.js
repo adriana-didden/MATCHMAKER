@@ -28,6 +28,47 @@ function displayTitlePage (){
 displayTitlePage();
 
 
+// Carousel 
+
+// bulmaCarousel.attach('#carousel-demo', {
+//   slidesToScroll: 1,
+//   slidesToShow: 4
+// });
+
+// Slideshow
+
+var slideIndex = 1;
+showSlides(slideIndex);
+
+// Next/previous controls
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+// Thumbnail image controls
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+}
+
+
+
+
 // Questions 
 
 var questionsArray = [
@@ -65,7 +106,8 @@ var questionsArray = [
 var questionNumber=0;
 
 function displayQuestionOneAtATime(){
-  $('#main-body').empty()
+  $('#main-body').empty();
+  $('#slideshow').remove();
   if (questionNumber<questionsArray.length){
   var headingQuestionEl = $("<div id='display-div' class='container'><h2 class='title has-text-centered sriracha'>"+ questionsArray[questionNumber].title +"</h2><div id='answer-colums' class='columns'></div></div>")
   $("#main-body").append(headingQuestionEl)
@@ -204,9 +246,3 @@ function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWit
 //       localStorage.setItem("matchStorage", JSON.stringify(matchStorage))
 //       window.location.replace("./match-history.html")
       
-// }
-
-
-
-
-
