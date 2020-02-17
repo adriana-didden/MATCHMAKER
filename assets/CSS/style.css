@@ -37,7 +37,7 @@ nav {
     border-radius: 4px;
 }
 
-#main-title, #title-page-div {
+#main-title, #title-page-div, #match-main-display {
     background-color: #2366d1;
     border-radius: 4px;
 }
@@ -49,9 +49,35 @@ nav {
 #welcome-to-matchmaker {
     margin-top: 15px;
     margin-bottom: 10px;
-    padding-left: 15px;
-    padding-right: 15px;
+    margin-left: 15px;
+    margin-right: 15px;
 }
+
+#match-img {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    margin-left: 15px;
+    margin-right: 15px;
+    border-width: 2px;
+    border-color: #ffffff;
+    border-style: solid;
+}
+
+#accept-match {
+  margin-bottom: 15px;
+}
+
+#decline-match{
+  margin-bottom: 20pxai;
+}
+
+#match-name {
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+
+
 
 .sriracha {
     font-family: 'Sriracha', cursive;
@@ -164,11 +190,7 @@ hr {
     font-size: 15px;
     opacity: 0.75;
     position: absolute;
-    
-    
-    
     text-align: center;
-    
   }
   
   #img1-position {
@@ -217,4 +239,23 @@ hr {
   @keyframes fade {
     from {opacity: .4}
     to {opacity: 1}
+  }
+
+  @media screen and (max-width: 456px){
+
+    #img1-position {
+      bottom: 25px;
+      left: 65px;
+    }
+  
+    #img2-position {
+      bottom: 25px;
+      left: 65px;
+    }
+    
+    #img3-position {
+      bottom: 25px;
+      left: 0px;
+    }
+
   }
