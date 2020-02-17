@@ -61,6 +61,17 @@ nav {
     color: #4a4a4a;
 }
 
+
+
+span {
+  color: #ffffff;
+}
+
+/* .navbar-burger:hover {
+  background-color: #f14668;
+} */
+
+
 #main-title, #title-page-div, #match-main-display {
     background-color: #6504B5;
     border-radius: 4px;
