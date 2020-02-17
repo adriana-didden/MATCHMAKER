@@ -299,8 +299,8 @@ if (questionNumber === questionsArray.length) {
       
 
 function giphy (){
-  var mainEl = $("<div class='container has-text-centered' id='giphy-div'></div>")
+  var giphy = $("<div class='container has-text-centered' id='giphy-div'></div>")
   $('#main-body').append(mainEl);
-  $(document).on('click', '#start-button', displayQuestionOneAtATime);
+  $(document).on('click', '#accept-button', );
 }
 giphy();
