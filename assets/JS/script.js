@@ -297,3 +297,10 @@ if (questionNumber === questionsArray.length) {
 //       localStorage.setItem("matchStorage", JSON.stringify(matchStorage))
 //       window.location.replace("./match-history.html")
       
+
+function giphy (){
+  var mainEl = $("<div class='container has-text-centered' id='giphy-div'></div>")
+  $('#main-body').append(mainEl);
+  $(document).on('click', '#start-button', displayQuestionOneAtATime);
+}
+giphy();
