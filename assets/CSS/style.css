@@ -68,7 +68,7 @@ nav {
 }
 
 #decline-match{
-  margin-bottom: 20pxai;
+  margin-bottom: 20px;
 }
 
 #match-name {
@@ -76,7 +76,17 @@ nav {
   margin-bottom: 15px;
 }
 
+#match-dog-breed {
+  margin-bottom: 15px;
+  margin-top: 15px;
+  opacity: 1.0;
+}
 
+#match-description {
+  margin-bottom: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
 
 
 .sriracha {
@@ -205,7 +215,7 @@ hr {
   
   #img3-position {
     bottom: 25px;
-    left: 95px;
+    left: 75px;
   }
   /* The dots/bullets/indicators */
   .dot {
