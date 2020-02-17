@@ -1,3 +1,14 @@
+/* *{
+  background-color: bisque;
+} */
+
+#bg-color {
+  background-color: #EFEEF1;
+}
+
+.div-color {
+  background-color: #6504B5;
+}
 
 .card {
     margin:5px;
@@ -10,14 +21,22 @@
     margin:5px;
 }
 
+/* .is-active {
+  background-color: #6504B5;
+} */
+
+#congrats {
+  margin-bottom: 30px;
+}
+
 .answer-button {
     width: 100%;
-    background-color: #f14668;
+    background-color: #6504B5;
     border-radius: 4px;
 }
 
 .answer-button:hover {
-    box-shadow: 0 12px 16px 0 rgba(248, 12, 3, 0.24), 0 17px 50px 0 rgba(248,12,3,0.24);
+    box-shadow: 0 12px 16px 0 #6504B5, 0 17px 50px 0 rgba(248,12,3,0.24);
     cursor: pointer;
 }
 
@@ -26,19 +45,24 @@ button:hover {
 }
 
 .navbar-item:hover {
-    box-shadow: 0 12px 16px 0 rgba(248, 12, 3, 0.24), 0 17px 50px 0 rgba(248,12,3,0.24);
+    box-shadow: 0 12px 16px 0 #6504B5, 0 17px 50px 0 rgba(248,12,3,0.24);
 }
 
 nav {
     margin-top: 10px;
 }
 
+.rounded {
+  border-radius: 4px;
+}
+
 .navbar-item {
     border-radius: 4px;
+    color: #4a4a4a;
 }
 
 #main-title, #title-page-div, #match-main-display {
-    background-color: #2366d1;
+    background-color: #6504B5;
     border-radius: 4px;
 }
 
@@ -124,7 +148,7 @@ hr {
 
 
 #footer-css {
-    background-color: #2366d1;
+    background-color: #6504B5;
     padding: 12px;
     border-radius: 4px;
     margin-bottom: 10px;
@@ -152,7 +176,7 @@ hr {
     max-width: 550px;
     position: relative;
     margin: auto;
-    background-color: #2366d1;
+    background-color: #6504B5;
     border-radius: 4px;
   }
   
