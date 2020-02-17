@@ -251,6 +251,12 @@ function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWit
       }
       displayMatch();
       $(document).on('click', '#decline-match', displayMatch);
+      $(document).on('click', '#accept-match', function(){
+        $('#accept-match').remove();
+        $('#decline-match').remove();
+        $('#match-main-display').append($("<h1 id='congrats' class='title is-1 has-text-white sriracha'>Your Match has been Saved</h1>"));
+        setTimeout(displayMatch, 2000); // Please replace displayMatch with your local storage function
+      })
   })
   .catch(function (error) {
       // console.log(error);

@@ -25,7 +25,9 @@
   background-color: #6504B5;
 } */
 
-
+#congrats {
+  margin-bottom: 30px;
+}
 
 .answer-button {
     width: 100%;
