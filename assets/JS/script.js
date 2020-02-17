@@ -3,6 +3,26 @@ var pf = new petfinder.Client({
   secret: "NGBUpIOll0vatwymXSITahluWEoK6W0hWyyBSvCN"
 });
 
+//Geolocation functions
+var coordinates;
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } 
+  else {
+    alert("Geolocation is not supported by this browser.");
+  }
+}
+
+getLocation();
+
+function showPosition(position) {
+  var lat = position.coords.latitude;
+  var lon = position.coords.longitude;
+  coordinates = lat + "," + lon;
+  console.log(coordinates);
+}
+
 // Navbar Hamburger 
 
 $(document).ready(function() {
@@ -199,7 +219,7 @@ if (questionNumber === questionsArray.length){
 
 function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWithCats) {
 
-  pf.animal.search({ type: "dog", location: "NC", gender: searchGender, good_with_children: goodWithChildren, coat: coatType, size: dogSize, good_with_cats: goodWithCats})
+  pf.animal.search({ type: "dog", location: coordinates, gender: searchGender, good_with_children: goodWithChildren, coat: coatType, size: dogSize, good_with_cats: goodWithCats})
   .then(function (response) {
       var responseArr = response.data;
       // for (var i = 0; i < responseArr.length; i++)
@@ -238,23 +258,12 @@ function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWit
 
 }
 
-
-
-
-// Display Match
-
-
-// function displayMatch (){
-
-
-
-// }
-
-
-
+if (questionNumber === questionsArray.length) {
 // buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWithCats);
 
+}
 // Match History
+
 
 
 
