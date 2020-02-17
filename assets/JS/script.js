@@ -105,7 +105,7 @@ var questionNumber=0;
 function displayQuestionOneAtATime(){
   $('#main-body').empty()
   if (questionNumber<questionsArray.length){
-  var headingQuestionEl = $("<div id='display-div' class='container'><h2 class='title is-3 has-text-centered sriracha'>"+ questionsArray[questionNumber].title +"</h2><div class='columns'></div></div>")
+  var headingQuestionEl = $("<div id='display-div' class='container'><h2 class='title has-text-centered sriracha'>"+ questionsArray[questionNumber].title +"</h2><div id='answer-colums' class='columns'></div></div>")
   $("#main-body").append(headingQuestionEl)
 
   for (var i=0; i<questionsArray[questionNumber].choices.length; i++){

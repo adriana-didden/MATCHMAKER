@@ -1,6 +1,4 @@
-.column {
-    margin: 20px;
-}
+
 .card {
     margin:5px;
     background-color: #C19AB7;
@@ -14,6 +12,7 @@
 #answer-button {
     width: 100%;
 }
+
 
 button:hover {
     box-shadow: 0 12px 16px 0 rgba(248, 12, 3, 0.24), 0 17px 50px 0 rgba(248,12,3,0.24);
@@ -75,4 +74,19 @@ footer{
     position: fixed;
     bottom:0px;
     color:white;
+}
+
+#display-div, #answer-colums {
+    width: 100%;
+}
+
+#footer-css {
+    background-color: #2366d1;
+    padding: 12px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+#footer-text {
+    opacity: 0.75;
 }
