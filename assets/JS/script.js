@@ -228,8 +228,24 @@ function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWit
       console.log(response.data);
       var i = 0;
       function displayMatch(){
+      
+        function dogBreed(){
+        var dogBreedPrimary = (response.data.animals[i].breeds.primary); 
+        var dogBreedSecondary = (response.data.animals[i].breeds.secondary);
+        var dogBreedMixed = (response.data.animals[i].breeds.mixed);
+        if (dogBreedPrimary && dogBreedSecondary && dogBreedMixed === true) {
+             return "This cutiepie is a " + dogBreedPrimary + " and " + dogBreedSecondary + " mix";
+         }
+        if (dogBreedPrimary && dogBreedSecondary === null && dogBreedMixed === true) {
+             return "This cutiepie is mainly a " + dogBreedPrimary + " mix";
+        }
+        if (dogBreedPrimary && dogBreedSecondary === null && dogBreedMixed === false) {
+            return "This cutiepie is a " + dogBreedPrimary;
+        }
+        }
+
       $('#match-main-display').remove();
-      var matchDisplay = $("<div id='match-main-display' class='container has-text-centered'><img id='match-img' src="+ response.data.animals[i].photos[0].medium +"> <h1 id='match-name' class='title is-3 sriracha'>"+ response.data.animals[i].name +"</h1><button id='accept-match' class='button is-danger is-size-2 has-text-weight-bold sriracha'>Accept Match!!!</button><br/><button id='decline-match' class='button is-dark is-size-4 sriracha'>Decline Match</button></div>");
+      var matchDisplay = $("<div id='match-main-display' class='container has-text-centered'><img id='match-img' src="+ response.data.animals[i].photos[0].medium +"> <h1 id='match-name' class='title is-3 sriracha'>"+ response.data.animals[i].name +"</h1><h2 id='match-dog-breed' class='subtitle is-4 sriracha'>"+dogBreed()+"</h2><p id='match-description' class='is-size-4 mali'>"+response.data.animals[i].description +"</p><button id='accept-match' class='button is-danger is-size-2 has-text-weight-bold sriracha'>Accept Match!!!</button><br/><button id='decline-match' class='button is-dark is-size-4 sriracha'>Decline Match</button></div>");
       $('#main-body').append(matchDisplay);
       i++;
       }
