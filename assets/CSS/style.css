@@ -9,12 +9,8 @@
 .columns{
     margin:5px;
 }
-<<<<<<< HEAD
-.answer-button {
-=======
 
-#answer-button {
->>>>>>> 465fd44ff9f0b55628e57bb62287e1c870d97826
+.answer-button {
     width: 100%;
     background-color: #f14668;
     border-radius: 4px;
