@@ -3,6 +3,26 @@ var pf = new petfinder.Client({
   secret: "NGBUpIOll0vatwymXSITahluWEoK6W0hWyyBSvCN"
 });
 
+//Geolocation functions
+var coordinates;
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } 
+  else {
+    alert("Geolocation is not supported by this browser.");
+  }
+}
+
+getLocation();
+
+function showPosition(position) {
+  var lat = position.coords.latitude;
+  var lon = position.coords.longitude;
+  coordinates = lat + "," + lon;
+  console.log(coordinates);
+}
+
 // Navbar Hamburger 
 
 $(document).ready(function() {
@@ -101,7 +121,7 @@ var questionNumber=0;
 
 function displayQuestionOneAtATime(){
   $('#main-body').empty();
-  $('#slideshow').remove();
+  $('#big-slideshow-div').remove();
   if (questionNumber<questionsArray.length){
   var headingQuestionEl = $("<div id='display-div' class='container'><h2 class='title has-text-centered sriracha'>"+ questionsArray[questionNumber].title +"</h2><div id='answer-columns' class='columns'></div></div>")
   $("#main-body").append(headingQuestionEl)
@@ -199,13 +219,22 @@ if (questionNumber === questionsArray.length){
 
 function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWithCats) {
 
-  pf.animal.search({ type: "dog", location: "NC", gender: searchGender, good_with_children: goodWithChildren, coat: coatType, size: dogSize, good_with_cats: goodWithCats})
+  pf.animal.search({ type: "dog", location: coordinates, gender: searchGender, good_with_children: goodWithChildren, coat: coatType, size: dogSize, good_with_cats: goodWithCats})
   .then(function (response) {
       var responseArr = response.data;
       // for (var i = 0; i < responseArr.length; i++)
       // console.log(response.data.animals[0].contact);
       //console.log(response.data)
       console.log(response.data);
+      var i = 0;
+      function displayMatch(){
+      $('#match-main-display').remove();
+      var matchDisplay = $("<div id='match-main-display' class='container has-text-centered'><img id='match-img' src="+ response.data.animals[i].photos[0].medium +"> <h1 id='match-name' class='title is-3 sriracha'>"+ response.data.animals[i].name +"</h1><button id='accept-match' class='button is-danger is-size-2 has-text-weight-bold sriracha'>Accept Match!!!</button><br/><button id='decline-match' class='button is-dark is-size-4 sriracha'>Decline Match</button></div>");
+      $('#main-body').append(matchDisplay);
+      i++;
+      }
+      displayMatch();
+      $(document).on('click', '#decline-match', displayMatch);
   })
   .catch(function (error) {
       // console.log(error);
