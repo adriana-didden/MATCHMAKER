@@ -20,7 +20,6 @@ function showPosition(position) {
   var lat = position.coords.latitude;
   var lon = position.coords.longitude;
   coordinates = lat + "," + lon;
-  console.log(coordinates);
 }
 
 // Navbar Hamburger 
