@@ -4,6 +4,7 @@ var pf = new petfinder.Client({
 });
 
 //Geolocation functions
+//ADD CODE to alert "allow browser to know your location" just once
 var coordinates;
 function getLocation() {
   if (navigator.geolocation) {
@@ -221,14 +222,17 @@ function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWit
   pf.animal.search({ type: "dog", location: coordinates, gender: searchGender, good_with_children: goodWithChildren, coat: coatType, size: dogSize, good_with_cats: goodWithCats})
   .then(function (response) {
       var responseArr = response.data;
+      var acceptedDogIds = [];
       // for (var i = 0; i < responseArr.length; i++)
       // console.log(response.data.animals[0].contact);
       //console.log(response.data)
       console.log(response.data);
+      var dogId;
       var i = 0;
       function displayMatch(){
       
         function dogBreed(){
+        dogId = (response.data.animals[i].id);
         var dogBreedPrimary = (response.data.animals[i].breeds.primary); 
         var dogBreedSecondary = (response.data.animals[i].breeds.secondary);
         var dogBreedMixed = (response.data.animals[i].breeds.mixed);
@@ -243,13 +247,25 @@ function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWit
         }
         }
 
-      $('#match-main-display').remove();
-      var matchDisplay = $("<div id='match-main-display' class='container has-text-centered'><img id='match-img' src="+ response.data.animals[i].photos[0].medium +"> <h1 id='match-name' class='title is-3 sriracha'>"+ response.data.animals[i].name +"</h1><h2 id='match-dog-breed' class='subtitle is-4 sriracha'>"+dogBreed()+"</h2><p id='match-description' class='is-size-4 mali'>"+response.data.animals[i].description +"</p><button id='accept-match' class='button is-danger is-size-2 has-text-weight-bold sriracha'>Accept Match!!!</button><br/><button id='decline-match' class='button is-dark is-size-4 sriracha'>Decline Match</button></div>");
-      $('#main-body').append(matchDisplay);
-      i++;
-      }
-      displayMatch();
-      $(document).on('click', '#decline-match', displayMatch);
+        $('#match-main-display').remove();
+        var matchDisplay = $("<div id='match-main-display' class='container has-text-centered'><img id='match-img' src="+ response.data.animals[i].photos[0].medium +"> <h1 id='match-name' class='title is-3 sriracha'>"+ response.data.animals[i].name +"</h1><h2 id='match-dog-breed' class='subtitle is-4 sriracha'>"+dogBreed()+"</h2><p id='match-description' class='is-size-4 mali'>"+response.data.animals[i].description +"</p><button id='accept-match' class='button is-danger is-size-2 has-text-weight-bold sriracha'>Accept Match!!!</button><br/><button id='decline-match' class='button is-dark is-size-4 sriracha'>Decline Match</button></div>");
+        $('#main-body').append(matchDisplay);
+        i++;
+        }
+        displayMatch();
+        
+        $(document).on('click', '#decline-match', displayMatch);
+  
+        //create event listener for button id"accept-match" and push IDs into array there.
+             
+        $("#accept-match").on('click', function() {
+        
+          acceptedDogIds.push(dogId);
+          console.log(dogId);
+          displayMatch();
+        })
+        
+
   })
   .catch(function (error) {
       // console.log(error);
@@ -262,10 +278,6 @@ buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWithCats);
 
 }
 // Match History
-
-
-
-
 
 // function renderMatchHistory(event) {
 //   event.preventDefault();
