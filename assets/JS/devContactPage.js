@@ -14,9 +14,9 @@ var devTeam = [
     },
     {
       name: "Julie Berryhill",
-      portfolio: '',
-      gitHub: '',
-      link: '',
+      portfolio: 'https://findjules2.github.io/bootstrapPortfolio/',
+      gitHub: 'https://github.com/Findjules2/',
+      link: 'https://www.linkedin.com/in/julie-berryhill-8978591b/',
     },
     {
       name: "Monica Gonzalez Pena",
