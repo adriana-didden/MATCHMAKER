@@ -7,11 +7,11 @@ var pf = new petfinder.Client({
 //ADD CODE to alert "allow browser to know your location" just once
 var coordinates;
 
-$(window).on("load", function(){
-  if(!localStorage.getItem("getLocation")){
+$(window).on("load", function () {
+  if (!localStorage.getItem("getLocation")) {
     getLocation();
     localStorage.setItem("getLocation", "true");
-  }  
+  }
 })
 
 function getLocation() {
@@ -55,38 +55,6 @@ displayTitlePage();
 
 
 
-// Slideshow
-if (window.location.href === "file:///C:/Users/ccrum/OneDrive/Desktop/Bootcamp/projects/Project1/index.html") {
-
-  var slideIndex = 1;
-  showSlides(slideIndex);
-
-  // Next/previous controls
-  function plusSlides(n) {
-    showSlides(slideIndex += n);
-  }
-
-  // Thumbnail image controls
-  function currentSlide(n) {
-    showSlides(slideIndex = n);
-  }
-
-  function showSlides(n) {
-    var i;
-    var slides = document.getElementsByClassName("mySlides");
-    var dots = document.getElementsByClassName("dot");
-    if (n > slides.length) { slideIndex = 1 }
-    if (n < 1) { slideIndex = slides.length }
-    for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";
-    }
-    for (i = 0; i < dots.length; i++) {
-      dots[i].className = dots[i].className.replace(" active", "");
-    }
-    slides[slideIndex - 1].style.display = "block";
-    dots[slideIndex - 1].className += " active";
-  }
-}
 
 // Questions 
 
@@ -173,18 +141,18 @@ var devTeam = [
   }
 ];
 
-if(window.location.href === "file:///C:/Users/ccrum/OneDrive/Desktop/Bootcamp/projects/Project1/contact.html"){
-console.log(window.location.href)
+if (window.location.href === "file:///C:/Users/ccrum/OneDrive/Desktop/Bootcamp/projects/Project1/contact.html") {
+  console.log(window.location.href)
 
-function produceContactDisplay(){
-  var contactHeading = $("<div id='display-div' class='container'><h2 class='title has-text-centered sriracha'>Developer Contact Information</h2><div id='answer-columns' class='columns'></div></div>")
-  $("#contact-body").append(contactHeading);
-  for (var i=0; i<devTeam.length; i++){
-  var devColumns = $("<div class='column has-text-centered div-within-answer-div'><div class='column is-danger has-text-weight-bold has-text-white mali contact-info'><h3 class='has-text-weight-bold has-text-white'>"+devTeam[i].name +"</h3><form style='display: inline' target='_blank' action="+devTeam[i].portfolio +" method='get'><button class='button is-danger has-text-white contact-button'>Portfolio</button></form><form style='display: inline' target='_blank' action="+devTeam[i].gitHub +" method='get'><button class='button is-danger has-text-white contact-button'><i class='fab fa-github'></i></button></form><form style='display: inline' target='_blank' action="+devTeam[i].link +" method='get'><button class='button is-danger has-text-white contact-button'><i class='fab fa-linkedin-in'></i></button></form></div></div>")
-  $(".columns").append(devColumns);
+  function produceContactDisplay() {
+    var contactHeading = $("<div id='display-div' class='container'><h2 class='title has-text-centered sriracha'>Developer Contact Information</h2><div id='answer-columns' class='columns'></div></div>")
+    $("#contact-body").append(contactHeading);
+    for (var i = 0; i < devTeam.length; i++) {
+      var devColumns = $("<div class='column has-text-centered div-within-answer-div'><div class='column is-danger has-text-weight-bold has-text-white mali contact-info'><h3 class='has-text-weight-bold has-text-white'>" + devTeam[i].name + "</h3><form style='display: inline' target='_blank' action=" + devTeam[i].portfolio + " method='get'><button class='button is-danger has-text-white contact-button'>Portfolio</button></form><form style='display: inline' target='_blank' action=" + devTeam[i].gitHub + " method='get'><button class='button is-danger has-text-white contact-button'><i class='fab fa-github'></i></button></form><form style='display: inline' target='_blank' action=" + devTeam[i].link + " method='get'><button class='button is-danger has-text-white contact-button'><i class='fab fa-linkedin-in'></i></button></form></div></div>")
+      $(".columns").append(devColumns);
+    }
+    produceContactDisplay();
   }
-  produceContactDisplay();
-}
 
 
 }
@@ -272,27 +240,15 @@ function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWit
     .then(function (response) {
       var responseArr = response.data;
       var acceptedDogIds = JSON.parse(localStorage.getItem("matches") || "[]");
-      
+
       console.log(response.data);
       var dogId;
       var i = 0;
-      function displayMatch(){
-        
+      function displayMatch() {
+
         // function storeInLocalStorage() {
         //   localStorage.setItem("matches", JSON.stringify(acceptedDogIds));          
         // }
-        
-        function dogBreed(){
-        dogId = (response.data.animals[i].id);
-        var dogBreedPrimary = (response.data.animals[i].breeds.primary); 
-        var dogBreedSecondary = (response.data.animals[i].breeds.secondary);
-        var dogBreedMixed = (response.data.animals[i].breeds.mixed);
-        if (dogBreedPrimary && dogBreedSecondary && dogBreedMixed === true) {
-             return "This cutiepie is a " + dogBreedPrimary + " and " + dogBreedSecondary + " mix";
-         }
-        if (dogBreedPrimary && dogBreedSecondary === null && dogBreedMixed === true) {
-             return "This cutiepie is mainly a " + dogBreedPrimary + " mix";
-        }
 
         function dogBreed() {
           dogId = (response.data.animals[i].id);
@@ -305,11 +261,23 @@ function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWit
           if (dogBreedPrimary && dogBreedSecondary === null && dogBreedMixed === true) {
             return "This cutiepie is mainly a " + dogBreedPrimary + " mix";
           }
-          if (dogBreedPrimary && dogBreedSecondary === null && dogBreedMixed === false) {
-            return "This cutiepie is a " + dogBreedPrimary;
+
+          function dogBreed() {
+            dogId = (response.data.animals[i].id);
+            var dogBreedPrimary = (response.data.animals[i].breeds.primary);
+            var dogBreedSecondary = (response.data.animals[i].breeds.secondary);
+            var dogBreedMixed = (response.data.animals[i].breeds.mixed);
+            if (dogBreedPrimary && dogBreedSecondary && dogBreedMixed === true) {
+              return "This cutiepie is a " + dogBreedPrimary + " and " + dogBreedSecondary + " mix";
+            }
+            if (dogBreedPrimary && dogBreedSecondary === null && dogBreedMixed === true) {
+              return "This cutiepie is mainly a " + dogBreedPrimary + " mix";
+            }
+            if (dogBreedPrimary && dogBreedSecondary === null && dogBreedMixed === false) {
+              return "This cutiepie is a " + dogBreedPrimary;
+            }
           }
         }
-      }
 
         $('#match-main-display').remove();
         var matchDisplay = $("<div id='match-main-display' class='container has-text-centered'><img id='match-img' src=" + response.data.animals[i].photos[0].medium + "> <h1 id='match-name' class='title is-3 has-text-white sriracha'>" + response.data.animals[i].name + "</h1><h2 id='match-dog-breed' class='subtitle is-4 has-text-white sriracha'>" + dogBreed() + "</h2><p id='match-description' class='is-size-5 has-text-white mali'>" + response.data.animals[i].description + "</p><button id='accept-match' class='button is-danger is-size-2 has-text-weight-bold sriracha'>Accept Match!!!</button><br/><button id='decline-match' class='button is-dark is-size-4 sriracha'>Decline Match</button></div>");
@@ -323,7 +291,7 @@ function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWit
             acceptedDogIds.push(dogId);
             // storeInLocalStorage();
             localStorage.setItem("matches", JSON.stringify(acceptedDogIds))
-          }          
+          }
         });
 
         i++;
@@ -332,36 +300,41 @@ function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWit
 
       displayMatch();
       $(document).on('click', '#decline-match', displayMatch);
-      $(document).on('click', '#accept-match', function (){ 
+      $(document).on('click', '#accept-match', function () {
         $('#accept-match').remove();
         $('#decline-match').remove();
         $('#match-main-display').append($("<h1 id='congrats' class='title is-1 has-text-white sriracha'>Your Match has been Saved</h1>"));
         setTimeout(displayMatch, 2000);
         $(".modal-content").html("")
         //RUN GIPHY
-        
+
         var queryURL = "http://api.giphy.com/v1/gifs/search?api_key=LLdCkhWcP8YLeTTJPLSVyeqLFaiZlHiB&limit=1&rating=g&q=congrats&SameSite=Secure";
-        
+
         $(".modal").addClass("is-active");
 
-          $.ajax({
-            url: queryURL,
-            method: "GET"
-          }).then(function (giphy) {
+        $.ajax({
+          url: queryURL,
+          method: "GET"
+        }).then(function (giphy) {
 
-            var theGIF = $("<img>")
-            theGIF.attr("src", giphy.data[0].images.original.url)
-            $(".modal-content").append(theGIF);
-            console.log(giphy)
+          var theGIF = $("<img>")
+          theGIF.attr("src", giphy.data[0].images.original.url)
+          $(".modal-content").append(theGIF);
+          console.log(giphy)
 
-          });
-          var modal = document.getElementsByClassName("modal is-active");
+        });
+        var modal = document.getElementsByClassName("modal is-active");
 
-          window.onclick = function(event) {
-            if (event.target == modal) {
-              modal.removeClass("is-active")
-            }
-          };
+        window.onclick = function (event) {
+          if (event.target == modal) {
+            modal.removeClass("is-active")
+          }
+        };
+        $(".modal-background").click(() => closeModal())
+        $(".modal-close").click(() => closeModal())
+        const closeModal = () => {
+          $(".modal").removeClass("is-active")
+        }
 
       })
     })
@@ -369,7 +342,7 @@ function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWit
       // console.log(error);
     });
 
-  
+
 
 }
 
@@ -386,15 +359,15 @@ if (questionNumber === questionsArray.length) {
 
 function renderMatchHistory(event) {
   event.preventDefault();
-  let matchStorage = JSON.parse(localStorage.getItem("matchStorage")) 
+  let matchStorage = JSON.parse(localStorage.getItem("matchStorage"))
 
-  if(matchStorage){
-    matchStorage.sort(function(acceptedDogIds){
+  if (matchStorage) {
+    matchStorage.sort(function (acceptedDogIds) {
 
       // ADD HERE
     })
-    for (var i=0; i < matchStorage.length; i++){
-     var listIds = document.createElement('')
+    for (var i = 0; i < matchStorage.length; i++) {
+      var listIds = document.createElement('')
     }
   }
 
@@ -446,8 +419,3 @@ function renderMatchHistory(event) {
 
 //     })
 // })
-$(".modal-background").click(()=>closeModal())
-$(".modal-close").click(()=>closeModal())
-const closeModal =()=>{
-  $(".modal").removeClass("is-active")
-}
