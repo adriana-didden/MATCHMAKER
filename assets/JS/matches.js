@@ -14,8 +14,8 @@ function getMatches () {
     for(var i = 0; i < matches.length; i++){
         pf.animal.show(matches[i]).then(function(response){
             console.log(response)
-            console.log(response.data.animal.photos)
-            var matchDisplay = $("<div id='match-main-display' class='container has-text-centered'><img id='match-img' src="+ response.data.animal.photos[0].small +"> <h1 id='match-name' class='title is-3 has-text-white sriracha'>"+ response.data.animal.name +"</h1></h2><p id='match-description' class='is-size-5 has-text-white mali'>"+ response.data.animal.contact);
+            console.log(response.data.animal.url)
+            var matchDisplay = $("<div id='match-main-display' class='container has-text-centered'><img id='match-img' src="+ response.data.animal.photos[0].small +"> <h1 id='match-name' class='title is-3 has-text-white sriracha'>"+ response.data.animal.name +"</h1><p id='match-description' class='is-size-5 has-text-white mali'><a href="+ response.data.animal.url +" target='_blank'>Click to see this pet!</a></p>");
             $('#main-body-match-history').append(matchDisplay);
 
 
