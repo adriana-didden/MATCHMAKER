@@ -1,102 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+    <!-- <link rel="stylesheet" href="assets/CSS/reset.css"> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Mali|Sriracha&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/CSS/style.css">
 
     <title>MATCHMAKER</title>
 
-</head>
+  </head>
+  <body>
+    <section id="bg-color" class="hero is-fullheight">
 
-<body>
-    <section class="hero is-info is-fullheight">
-
-        <div class="hero-head">
-            <nav class="navbar is-link">
-                <div class="container">
-                    <div class="navbar-brand">
-                        <a href="./index.html" class="navbar-item has-text-white has-text-weight-bold" id="main-title">
-                            <h1 class="title is-3 has-text-weight-bold sriracha">MATCHMAKER</h1>
-                        </a>
-                        <span class="navbar-burger burger" id="navbar-one">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </span>
-                    </div>
-                    <div class="navbar-menu" id="navbar-two">
-                        <div class="navbar-end">
-                            <a href="./index.html" class="navbar-item is-active is-size-4 sriracha">
-                                Home
-                            </a>
-                            <a href="./match-history.html" class="navbar-item is-size-4 sriracha">
-                                Match History
-                            </a>
-                            <a href="contact.html" class="navbar-item is-size-4 sriracha">
-                                Developer Contact Info
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-        </div>
-        <h1 class="title is-1 level">Contact us!</h1>
-        <div class="hero-body">
-            <div class="columns">
-                
-                <div class="card level">
-                    <div class="card-content">
-                        <h2 class="title is-5">Caleb Crum</h2>
-                        <p>Email:<a href="mailto:someone@example.com?Subject=Hello%20again" target="_top">Send Mail</a>
-                        </p>
-                    </div>
-                </div>
-                <div class="card level">
-                    <div class="card-content">
-                        <h2 class="title is-5">Adriana Didden</h2>
-                        <p>Email:<a href="mailto:someone@example.com?Subject=Hello%20again" target="_top">Send Mail</a>
-                        </p>
-                    </div>
-                </div>
-                <div class="card level">
-                    <div class="card-content">
-                        <h2 class="title is-5">Julie Berryhill</h2>
-                        <p>Email:<a href="mailto:someone@example.com?Subject=Hello%20again" target="_top">Send Mail</a>
-                        </p>
-                    </div>
-                </div>
-                <div class="card level">
-                    <div class="card-content">
-                        <h2 class="title is-5">Monica Gonzalez Pena</h2>
-                        <p>Email:<a href="mailto:someone@example.com?Subject=Hello%20again" target="_top">Send Mail</a>
-                        </p>
-                    </div>
-                </div>
+      <div class="hero-head">
+        <nav class="navbar div-color">
+          <div class="container">
+            <div class="navbar-brand">
+              <a href="./index.html" class="navbar-item has-text-white has-text-weight-bold" id="main-title">
+                <h1 class="title is-3 has-text-weight-bold has-text-white sriracha">MATCHMAKER</h1>
+              </a>
+              <span class="navbar-burger burger div-color rounded" id="navbar-one">
+                <span></span>
+                <span></span>
+                <span></span>
+              </span>
             </div>
-
-        </div>
-        <div class="hero-foot">
-            <div id="footer-css" class="container">
-                <p id="footer-text" class="has-text-centered mali">
-                    The developers of MATCHMAKER are in no way liable for any heartbreak that may result from the use of
-                    this application.
-                </p>
+            <div class="navbar-menu" id="navbar-two">
+              <div class="navbar-end">
+                <a href="./index.html" class="navbar-item is-size-4 sriracha">
+                  Home
+                </a>
+                <a href="match-history.html" class="navbar-item is-size-4 sriracha">
+                  Match History
+                </a>
+                <a href="./contact.html" class="navbar-item is-size-4 is-active sriracha">
+                  Developer Contact Info
+                </a>
+              </div>
             </div>
-        </div>
+          </div>
+        </nav>
+      </div>
+    
+      <div id="contact-body" class="hero-body">
+        
+      </div>
+
+
+      <div class="hero-foot">
+          <div id="footer-css" class="container">
+            <p id="footer-text" class="has-text-centered has-text-white mali">
+              The developers of MATCHMAKER are in no way liable for any heartbreak that may result from the use of this application. 
+            </p>
+          </div>
+      </div>
+      
     </section>
 
+    
+    
+  <script src="http://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://unpkg.com/@petfinder/petfinder-js/dist/petfinder.min.js"></script>  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>  
+  <script src="./assets/JS/script.js"></script>
 
-
-    <script src="http://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    <script src="./assets/JS/script.js"></script>
-
-</body>
-
+  </body>
 </html>

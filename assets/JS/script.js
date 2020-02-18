@@ -6,6 +6,14 @@ var pf = new petfinder.Client({
 //Geolocation functions
 //ADD CODE to alert "allow browser to know your location" just once
 var coordinates;
+
+$(window).on("load", function(){
+  if(!localStorage.getItem("getLocation")){
+    getLocation();
+    localStorage.setItem("getLocation", "true");
+  }  
+})
+
 function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition);
@@ -14,8 +22,6 @@ function getLocation() {
     alert("Geolocation is not supported by this browser.");
   }
 }
-
-getLocation();
 
 function showPosition(position) {
   var lat = position.coords.latitude;
@@ -50,6 +56,7 @@ displayTitlePage();
 
 
 // Slideshow
+if(window.location.href === "file:///C:/Users/ccrum/OneDrive/Desktop/Bootcamp/projects/Project1/index.html"){
 
 var slideIndex = 1;
 showSlides(slideIndex);
@@ -79,7 +86,7 @@ function showSlides(n) {
   slides[slideIndex-1].style.display = "block";
   dots[slideIndex-1].className += " active";
 }
-
+}
 
 
 
@@ -139,6 +146,49 @@ function displayQuestionOneAtATime(){
 }
     
 }
+
+
+var devTeam = [
+  {
+    name: 'Adriana J Didden',
+    portfolio: '',
+    gitHub: '',
+    link: '',
+  },
+  {
+    name: 'Caleb Crum',
+    portfolio: 'https://ccrum292.github.io/Responsive_Design/',
+    gitHub: 'https://github.com/ccrum292',
+    link: 'https://www.linkedin.com/in/caleb-crum-220a7319b/',
+  },
+  {
+    name: "Julie Berryhill",
+    portfolio: '',
+    gitHub: '',
+    link: '',
+  },
+  {
+    name: "Monica Gonzalez Pena",
+    portfolio: 'https://tantatinta.github.io/ProtoPortfolio/',
+    gitHub: 'https://github.com/tantatinta',
+    link: 'www.linkedin.com/in/mónica-gonzález-peña-0712a7175',
+  }
+];
+
+if(window.location.href === "file:///C:/Users/ccrum/OneDrive/Desktop/Bootcamp/projects/Project1/contact.html"){
+console.log(window.location.href)
+function produceContactDisplay(){
+  var contactHeading = $("<div id='display-div' class='container'><h2 class='title has-text-centered sriracha'>Developer Contact Information</h2><div id='answer-columns' class='columns'></div></div>")
+  $("#contact-body").append(contactHeading);
+  for (var i=0; i<devTeam.length; i++){
+  var devColumns = $("<div class='column has-text-centered div-within-answer-div'><div class='column is-danger has-text-weight-bold has-text-white mali contact-info'><h3 class='has-text-weight-bold has-text-white'>"+devTeam[i].name +"</h3><form style='display: inline' target='_blank' action="+devTeam[i].portfolio +" method='get'><button class='button is-danger has-text-white contact-button'>Portfolio</button></form><form style='display: inline' target='_blank' action="+devTeam[i].gitHub +" method='get'><button class='button is-danger has-text-white contact-button'><i class='fab fa-github'></i></button></form><form style='display: inline' target='_blank' action="+devTeam[i].link +" method='get'><button class='button is-danger has-text-white contact-button'><i class='fab fa-linkedin-in'></i></button></form></div></div>")
+  $(".columns").append(devColumns);
+  }
+}
+produceContactDisplay();
+}
+
+
 
 $(document).on('click', '.answer-button', click);
 
