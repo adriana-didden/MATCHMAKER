@@ -188,7 +188,7 @@ function filter() {
 
 function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWithCats) {
 
-  pf.animal.search({ type: "dog", location: coordinates, distance: 100, gender: searchGender, good_with_children: goodWithChildren, coat: coatType, size: dogSize, good_with_cats: goodWithCats })
+  pf.animal.search({ type: "dog", location: coordinates, gender: searchGender, good_with_children: goodWithChildren, coat: coatType, size: dogSize, good_with_cats: goodWithCats })
     .then(function (response) {
       var responseArr = response.data;
       var acceptedDogIds = JSON.parse(localStorage.getItem("matches") || "[]");
@@ -203,15 +203,13 @@ function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWit
             var dogBreedPrimary = (response.data.animals[i].breeds.primary);
             var dogBreedSecondary = (response.data.animals[i].breeds.secondary);
             var dogBreedMixed = (response.data.animals[i].breeds.mixed);
-            if (dogBreedPrimary && dogBreedSecondary && dogBreedMixed === true) {
+            if (dogBreedPrimary && dogBreedSecondary && dogBreedMixed) {
               return "This cutiepie is a " + dogBreedPrimary + " and " + dogBreedSecondary + " mix";
             }
-            if (dogBreedPrimary && !dogBreedSecondary && dogBreedMixed === true) {
-              console.log(1)
+            if (dogBreedPrimary && !dogBreedSecondary && dogBreedMixed) {              
               return "This cutiepie is mainly a " + dogBreedPrimary + " mix";
             }
-            if (dogBreedPrimary && !dogBreedSecondary && dogBreedMixed === false) {
-              console.log(2)
+            if (dogBreedPrimary && !dogBreedSecondary && !dogBreedMixed) {              
               return "This cutiepie is a " + dogBreedPrimary;
             }
             if (!dogBreedPrimary && !dogBreedSecondary && !dogBreedMixed) {
@@ -250,33 +248,33 @@ function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWit
         
         //RUN GIPHY
 
-        // var queryURL = "http://api.giphy.com/v1/gifs/search?api_key=LLdCkhWcP8YLeTTJPLSVyeqLFaiZlHiB&limit=1&rating=g&q=congrats&SameSite=Secure";
+        var queryURL = "http://api.giphy.com/v1/gifs/search?api_key=LLdCkhWcP8YLeTTJPLSVyeqLFaiZlHiB&limit=1&rating=g&q=congrats&SameSite=Secure";
 
-        // $(".modal").addClass("is-active");
+        $(".modal").addClass("is-active");
 
-        // $.ajax({
-        //   url: queryURL,
-        //   method: "GET"
-        // }).then(function (giphy) {
+        $.ajax({
+          url: queryURL,
+          method: "GET"
+        }).then(function (giphy) {
 
-        //   var theGIF = $("<img>")
-        //   theGIF.attr("src", giphy.data[0].images.original.url)
-        //   $(".modal-content").append(theGIF);
-        //   console.log(giphy)
+          var theGIF = $("<img>")
+          theGIF.attr("src", giphy.data[0].images.original.url)
+          $(".modal-content").append(theGIF);
+          console.log(giphy)
 
-        // });
-        // var modal = document.getElementsByClassName("modal is-active");
+        });
+        var modal = document.getElementsByClassName("modal is-active");
 
-        // window.onclick = function (event) {
-        //   if (event.target == modal) {
-        //     modal.removeClass("is-active")
-        //   }
-        // };
-        // $(".modal-background").click(() => closeModal())
-        // $(".modal-close").click(() => closeModal())
-        // const closeModal = () => {
-        //   $(".modal").removeClass("is-active")
-        // }
+        window.onclick = function (event) {
+          if (event.target == modal) {
+            modal.removeClass("is-active")
+          }
+        };
+        $(".modal-background").click(() => closeModal())
+        $(".modal-close").click(() => closeModal())
+        const closeModal = () => {
+          $(".modal").removeClass("is-active")
+        }
 
       })
     })
