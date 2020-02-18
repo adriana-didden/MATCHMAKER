@@ -15,8 +15,10 @@ function getMatches () {
         pf.animal.show(matches[i]).then(function(response){
             console.log(response)
             console.log(response.data.animal.photos)
-            var matchDisplay = $("<div id='match-main-display' class='container has-text-centered'><img id='match-img' src="+ response.data.animal.photos[0].medium +"> <h1 id='match-name' class='title is-3 has-text-white sriracha'>"+ response.data.animal.name +"</h1></h2><p id='match-description' class='is-size-5 has-text-white mali'>"+response.data.animal.description);
-            $('#main-body').append(matchDisplay);
+            var matchDisplay = $("<div id='match-main-display' class='container has-text-centered'><img id='match-img' src="+ response.data.animal.photos[0].small +"> <h1 id='match-name' class='title is-3 has-text-white sriracha'>"+ response.data.animal.name +"</h1></h2><p id='match-description' class='is-size-5 has-text-white mali'>"+ response.data.animal.contact);
+            $('#main-body-match-history').append(matchDisplay);
+
+
 
         // var photos = response.data.animals.photos[0]
         // // var photosLink = "https://unpkg.com/@petfinder/petfinder-js/dist/petfinder.min.js" + photos + pf;
