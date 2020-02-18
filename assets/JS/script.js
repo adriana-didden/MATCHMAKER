@@ -15,7 +15,13 @@ function getLocation() {
   }
 }
 
-getLocation();
+
+if (window.location.href === "file:///C:/Users/ccrum/OneDrive/Desktop/Bootcamp/projects/Project1/index.html") {
+  getLocation();
+} else {
+  // console.log('workin')
+}
+
 
 function showPosition(position) {
   var lat = position.coords.latitude;
@@ -50,36 +56,37 @@ displayTitlePage();
 
 
 // Slideshow
+if (window.location.href === "file:///C:/Users/ccrum/OneDrive/Desktop/Bootcamp/projects/Project1/index.html") {
 
-var slideIndex = 1;
-showSlides(slideIndex);
+  var slideIndex = 1;
+  showSlides(slideIndex);
 
-// Next/previous controls
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-}
-
-// Thumbnail image controls
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-}
-
-function showSlides(n) {
-  var i;
-  var slides = document.getElementsByClassName("mySlides");
-  var dots = document.getElementsByClassName("dot");
-  if (n > slides.length) { slideIndex = 1 }
-  if (n < 1) { slideIndex = slides.length }
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
+  // Next/previous controls
+  function plusSlides(n) {
+    showSlides(slideIndex += n);
   }
-  for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" active", "");
-  }
-  slides[slideIndex - 1].style.display = "block";
-  dots[slideIndex - 1].className += " active";
-}
 
+  // Thumbnail image controls
+  function currentSlide(n) {
+    showSlides(slideIndex = n);
+  }
+
+  function showSlides(n) {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    var dots = document.getElementsByClassName("dot");
+    if (n > slides.length) { slideIndex = 1 }
+    if (n < 1) { slideIndex = slides.length }
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+    for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex - 1].style.display = "block";
+    dots[slideIndex - 1].className += " active";
+  }
+}
 
 // Questions 
 
@@ -137,6 +144,49 @@ function displayQuestionOneAtATime() {
   }
 
 }
+
+
+var devTeam = [
+  {
+    name: "Adriana J Didden",
+    portfolio: "",
+    gitHub: "",
+    link: "",
+  },
+  {
+    name: "Caleb Crum",
+    portfolio: "",
+    gitHub: "",
+    link: "",
+  },
+  {
+    name: "Julie Berryhill",
+    portfolio: "",
+    gitHub: "",
+    link: "",
+  },
+  {
+    name: "Monica Gonzalez Pena",
+    portfolio: "",
+    gitHub: "",
+    link: "",
+  }
+];
+
+if (window.location.href === "file:///C:/Users/ccrum/OneDrive/Desktop/Bootcamp/projects/Project1/contact.html") {
+  console.log(window.location.href)
+  function produceContactDisplay() {
+    var contactHeading = $("<div id='display-div' class='container'><h2 class='title has-text-centered sriracha'>Developer Contact Information</h2><div id='answer-columns' class='columns'></div></div>")
+    $("#contact-body").append(contactHeading);
+    for (var i = 0; i < devTeam.length; i++) {
+      var devColumns = $("<div class='column has-text-centered div-within-answer-div'><div class='column is-danger has-text-weight-bold has-text-white mali answer-button'>" + +"</div></div>")
+      $(".columns").append(devColumns);
+    }
+  }
+  produceContactDisplay();
+}
+
+
 
 $(document).on('click', '.answer-button', click);
 
@@ -252,6 +302,7 @@ function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWit
         $('#main-body').append(matchDisplay);
 
         var acceptBtnClicked;
+
         $("#accept-match").click(function () {
           if (acceptBtnClicked = true) {
             console.log(dogId);
@@ -266,11 +317,27 @@ function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWit
 
       displayMatch();
       $(document).on('click', '#decline-match', displayMatch);
-      $(document).on('click', '#accept-match', function () {
+      $(document).on('click', '#accept-match', function (){ 
         $('#accept-match').remove();
         $('#decline-match').remove();
         $('#match-main-display').append($("<h1 id='congrats' class='title is-1 has-text-white sriracha'>Your Match has been Saved</h1>"));
         setTimeout(displayMatch, 2000);
+
+        //RUN GIPHY
+        var queryURL = "http://api.giphy.com/v1/gifs/search?api_key=LLdCkhWcP8YLeTTJPLSVyeqLFaiZlHiB&q=congrats";
+
+
+          $.ajax({
+            url: queryURL,
+            method: "GET"
+          }).then(function (giphy) {
+            $("#main-body").append("<img>"+giphy);
+            console.log("YAY")
+
+            settimeout(giphy, 5000);
+            $("#main-body").empty();
+          });
+
       })
     })
     .catch(function (error) {
@@ -319,18 +386,3 @@ if (questionNumber === questionsArray.length) {
 //       localStorage.setItem("matchStorage", JSON.stringify(matchStorage))
 //       window.location.replace("./match-history.html")
 
-var queryURL = "http://api.giphy.com/v1/gifs/search?api_key=LLdCkhWcP8YLeTTJPLSVyeqLFaiZlHiB&q=dog%2Bhappy&limit=5";
-
-$("#accept-match").on(click, function (event) {
-  event.preventDefault();
-
-  $.ajax({
-    url: queryURL,
-    method: "GET"
-  }).then(function (response) {
-    $("#main-body").append(response);
-    console.log("YAY")
-  });
-
-
-});
