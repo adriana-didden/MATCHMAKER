@@ -48,4 +48,5 @@ getMatches();
 
 document.getElementById("clearMatchHistory").addEventListener("click", function(){
     localStorage.clear();
+    $('#main-body-match-history').html("")
   });
