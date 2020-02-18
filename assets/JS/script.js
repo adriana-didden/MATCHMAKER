@@ -15,7 +15,13 @@ function getLocation() {
   }
 }
 
-getLocation();
+
+if (window.location.href === "file:///C:/Users/ccrum/OneDrive/Desktop/Bootcamp/projects/Project1/index.html") {
+  getLocation();
+}else{
+  // console.log('workin')
+}
+
 
 function showPosition(position) {
   var lat = position.coords.latitude;
@@ -50,6 +56,7 @@ displayTitlePage();
 
 
 // Slideshow
+if(window.location.href === "file:///C:/Users/ccrum/OneDrive/Desktop/Bootcamp/projects/Project1/index.html"){
 
 var slideIndex = 1;
 showSlides(slideIndex);
@@ -79,7 +86,7 @@ function showSlides(n) {
   slides[slideIndex-1].style.display = "block";
   dots[slideIndex-1].className += " active";
 }
-
+}
 
 
 
@@ -139,6 +146,49 @@ function displayQuestionOneAtATime(){
 }
     
 }
+
+
+var devTeam = [
+  {
+    name: "Adriana J Didden",
+    portfolio: "",
+    gitHub: "",
+    link: "",
+  },
+  {
+    name: "Caleb Crum",
+    portfolio: "",
+    gitHub: "",
+    link: "",
+  },
+  {
+    name: "Julie Berryhill",
+    portfolio: "",
+    gitHub: "",
+    link: "",
+  },
+  {
+    name: "Monica Gonzalez Pena",
+    portfolio: "",
+    gitHub: "",
+    link: "",
+  }
+];
+
+if(window.location.href === "file:///C:/Users/ccrum/OneDrive/Desktop/Bootcamp/projects/Project1/contact.html"){
+console.log(window.location.href)
+function produceContactDisplay(){
+  var contactHeading = $("<div id='display-div' class='container'><h2 class='title has-text-centered sriracha'>Developer Contact Information</h2><div id='answer-columns' class='columns'></div></div>")
+  $("#contact-body").append(contactHeading);
+  for (var i=0; i<devTeam.length; i++){
+  var devColumns = $("<div class='column has-text-centered div-within-answer-div'><div class='column is-danger has-text-weight-bold has-text-white mali answer-button'>"+  +"</div></div>")
+  $(".columns").append(devColumns);
+  }
+}
+produceContactDisplay();
+}
+
+
 
 $(document).on('click', '.answer-button', click);
 
