@@ -112,7 +112,7 @@ var questionsArray = [
     
   }
 ];
-//object.animals.0.contact:{all info} for display with approved match
+
 
 
 // question display functions
@@ -251,10 +251,24 @@ function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWit
       }
       displayMatch();
       $(document).on('click', '#decline-match', displayMatch);
+
+      //create event listener for button id"accept-match" and push IDs into array there.
+      
+      var acceptedDogIds = [];
+      
+      $("#accept-match").on('click', function () {
+        for (var i = 0; i < responseArr.length; i++)
+        acceptedDogIds.push(response.data.animals[i].id);
+        console.log(response.data.animals[i].id)
+      
+      })
+      
   })
   .catch(function (error) {
       // console.log(error);
   });
+
+  
 
 }
 
@@ -267,21 +281,23 @@ if (questionNumber === questionsArray.length) {
 
 
 
+var matchDisplayDiv = document.getElementById("matchStorage")
 
-// function renderMatchHistory(event) {
-//   event.preventDefault();
-//   let matchStorage = JSON.parse(localStorage.getItem("matchStorage")) 
+function renderMatchHistory(event) {
+  event.preventDefault();
+  let matchStorage = JSON.parse(localStorage.getItem("matchStorage")) 
 
-//   if(matchStorage){
-//     matchStorage.sort(function(/* ADD HERE */){
-//       // ADD HERE
-//     })
-//     for (var i=0; i < matchStorage.length; i++){
-//       // ADD HERE
-//     }
-//   }
+  if(matchStorage){
+    matchStorage.sort(function(acceptedDogIds){
 
-// }
+      // ADD HERE
+    })
+    for (var i=0; i < matchStorage.length; i++){
+     var listIds = document.createElement('')
+    }
+  }
+
+}
 
 // function saveToLocalStorage(event){
 //   event.preventDefault();
@@ -296,4 +312,56 @@ if (questionNumber === questionsArray.length) {
 //   matchStorage.push(matchObject);
 //       localStorage.setItem("matchStorage", JSON.stringify(matchStorage))
 //       window.location.replace("./match-history.html")
-      
+// var pf = new petfinder.Client({
+//   apiKey: "rfKtqLNMX2qtPkyR7cDRNWJgJwJ3kxAyzoJzYFwvt1S7IB3Hnb",
+//   secret: "NGBUpIOll0vatwymXSITahluWEoK6W0hWyyBSvCN"
+// });
+
+
+function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWithCats) {
+
+  pf.animal.search({ type: "dog", location: coordinates, gender: searchGender, good_with_children: goodWithChildren, coat: coatType, size: dogSize, good_with_cats: goodWithCats})
+  .then(function (response) {
+      var responseArr = response.data;
+      // for (var i = 0; i < responseArr.length; i++)
+      // console.log(response.data.animals[0].contact);
+      //console.log(response.data)
+      console.log(response.data);
+      var i = 0;
+      function displayMatch(){}
+
+$("#accept").on("click", function (event) {
+    event.preventDefault()
+
+    var dogId = response.data.animals[i].id
+    var queryURL = "https://unpkg.com/@petfinder/petfinder-js/dist/petfinder.min.js" + dogId + pf;
+    console.log(queryURL)
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function (response) {
+        console.log(queryURL);
+        console.log(response);
+        var photos = response.data.animals.photos[0]
+        var photosLink = "https://unpkg.com/@petfinder/petfinder-js/dist/petfinder.min.js" + photos + pf;
+        
+        console.log(photosLink)
+        var card = $("<div class='card'>")
+        var cardBody = $("<div class='card-body'>")
+        console.log(cardBody)
+        var cardPhoto = $("<img src='" + photos + "'>")
+        var cardName = $("<p class='card-Name'>")
+        var cardBreed = $("<p class='temp'>")
+        var cardContactLink = $("<a href=>")
+                
+        
+        
+        cardPhoto.append(cardPhoto)
+        cardName.text(response.animals.name)
+        cardBreed.text(response.animals.breeds)
+        cardContactLink.text("Click here for contact information:" + response.animals.contact)
+        cardBody.append(cardPhoto, cardName, cardBreed, cardContactLink)
+        card.append(cardBody)
+        $(".cardHolder").prepend(card)
+    })
+})
