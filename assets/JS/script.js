@@ -1,6 +1,6 @@
 var pf = new petfinder.Client({
-  apiKey: "rfKtqLNMX2qtPkyR7cDRNWJgJwJ3kxAyzoJzYFwvt1S7IB3Hnb",
-  secret: "NGBUpIOll0vatwymXSITahluWEoK6W0hWyyBSvCN"
+  apiKey: "yFhWUo2yQ3zi2yQgCFJjR8j5ik1tlTX7iZsSZJMQvU55hD3z44",
+  secret: "KhkHM7EJA6UjUWgqvL6e3nETORjUeXN0gOAx92tN"
 });
 
 //Geolocation functions
