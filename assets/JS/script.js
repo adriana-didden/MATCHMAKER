@@ -169,9 +169,9 @@ var devTeam = [
   },
   {
     name: "Monica Gonzalez Pena",
-    portfolio: '',
-    gitHub: '',
-    link: '',
+    portfolio: 'https://tantatinta.github.io/ProtoPortfolio/',
+    gitHub: 'https://github.com/tantatinta',
+    link: 'www.linkedin.com/in/mónica-gonzález-peña-0712a7175',
   }
 ];
 
