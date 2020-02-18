@@ -6,6 +6,14 @@ var pf = new petfinder.Client({
 //Geolocation functions
 //ADD CODE to alert "allow browser to know your location" just once
 var coordinates;
+
+$(window).on("load", function(){
+  if(!localStorage.getItem("getLocation")){
+    getLocation();
+    localStorage.setItem("getLocation", "true");
+  }  
+})
+
 function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition);
@@ -14,14 +22,6 @@ function getLocation() {
     alert("Geolocation is not supported by this browser.");
   }
 }
-
-
-if (window.location.href === "file:///C:/Users/ccrum/OneDrive/Desktop/Bootcamp/projects/Project1/index.html") {
-  getLocation();
-}else{
-  // console.log('workin')
-}
-
 
 function showPosition(position) {
   var lat = position.coords.latitude;
