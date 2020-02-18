@@ -2,9 +2,9 @@
 var devTeam = [
     {
       name: 'Adriana J Didden',
-      portfolio: '',
-      gitHub: '',
-      link: '',
+      portfolio: 'https://adriana-didden.github.io/Responsiveness-Portfolio/',
+      gitHub: 'https://github.com/adriana-didden',
+      link: 'www.linkedin.com/in/adriana-didden-487882167',
     },
     {
       name: 'Caleb Crum',
