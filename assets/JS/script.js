@@ -119,7 +119,7 @@ var questionsArray = [
     
   }
 ];
-//object.animals.0.contact:{all info} for display with approved match
+
 
 
 // question display functions
@@ -272,16 +272,16 @@ function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWit
   pf.animal.search({ type: "dog", location: coordinates, gender: searchGender, good_with_children: goodWithChildren, coat: coatType, size: dogSize, good_with_cats: goodWithCats})
   .then(function (response) {
       var responseArr = response.data;
-      var acceptedDogIds = [];
+      var acceptedDogIds = JSON.parse(localStorage.getItem("matches") || "[]");
       
       console.log(response.data);
       var dogId;
       var i = 0;
       function displayMatch(){
         
-        function storeInLocalStorage() {
-          localStorage.setItem("matches", JSON.stringify(acceptedDogIds));          
-        }
+        // function storeInLocalStorage() {
+        //   localStorage.setItem("matches", JSON.stringify(acceptedDogIds));          
+        // }
         
         function dogBreed(){
         dogId = (response.data.animals[i].id);
@@ -308,7 +308,8 @@ function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWit
           if(acceptBtnClicked = true) {
             console.log(dogId);
             acceptedDogIds.push(dogId);
-            storeInLocalStorage();
+            // storeInLocalStorage();
+            localStorage.setItem("matches", JSON.stringify(acceptedDogIds))
           }          
         });
         
@@ -329,6 +330,8 @@ function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWit
       // console.log(error);
   });
 
+  
+
 }
 
 if (questionNumber === questionsArray.length) {
@@ -342,20 +345,21 @@ buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWithCats);
 // Match History
 
 
-// function renderMatchHistory(event) {
-//   event.preventDefault();
-//   let matchStorage = JSON.parse(localStorage.getItem("matchStorage")) 
+function renderMatchHistory(event) {
+  event.preventDefault();
+  let matchStorage = JSON.parse(localStorage.getItem("matchStorage")) 
 
-//   if(matchStorage){
-//     matchStorage.sort(function(/* ADD HERE */){
-//       // ADD HERE
-//     })
-//     for (var i=0; i < matchStorage.length; i++){
-//       // ADD HERE
-//     }
-//   }
+  if(matchStorage){
+    matchStorage.sort(function(acceptedDogIds){
 
-// }
+      // ADD HERE
+    })
+    for (var i=0; i < matchStorage.length; i++){
+     var listIds = document.createElement('')
+    }
+  }
+
+}
 
 // function saveToLocalStorage(event){
 //   event.preventDefault();
@@ -370,4 +374,36 @@ buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWithCats);
 //   matchStorage.push(matchObject);
 //       localStorage.setItem("matchStorage", JSON.stringify(matchStorage))
 //       window.location.replace("./match-history.html")
-      
+// var pf = new petfinder.Client({
+//   apiKey: "rfKtqLNMX2qtPkyR7cDRNWJgJwJ3kxAyzoJzYFwvt1S7IB3Hnb",
+//   secret: "NGBUpIOll0vatwymXSITahluWEoK6W0hWyyBSvCN"
+// });
+
+
+// function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWithCats) {
+
+//   pf.animal.search({ type: "dog", location: coordinates, gender: searchGender, good_with_children: goodWithChildren, coat: coatType, size: dogSize, good_with_cats: goodWithCats})
+//   .then(function (response) {
+//       var responseArr = response.data;
+//       // for (var i = 0; i < responseArr.length; i++)
+//       // console.log(response.data.animals[0].contact);
+//       //console.log(response.data)
+//       console.log(response.data);
+//       var i = 0;
+//       function displayMatch(){}
+
+// $("#accept").on("click", function (event) {
+//     event.preventDefault()
+
+//     var dogId = response.data.animals[i].id
+//     var queryURL = "https://unpkg.com/@petfinder/petfinder-js/dist/petfinder.min.js" + dogId + pf;
+//     console.log(queryURL)
+//     $.ajax({
+//         url: queryURL,
+//         method: "GET"
+//     }).then(function (response) {
+//         console.log(queryURL);
+//         console.log(response);
+
+//     })
+// })
