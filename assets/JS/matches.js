@@ -45,3 +45,7 @@ function getMatches () {
 }
 
 getMatches();
+
+document.getElementById("clearMatchHistory").addEventListener("click", function(){
+    localStorage.clear();
+  });

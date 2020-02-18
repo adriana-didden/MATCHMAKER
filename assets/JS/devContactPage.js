@@ -2,9 +2,9 @@
 var devTeam = [
     {
       name: 'Adriana J Didden',
-      portfolio: '',
-      gitHub: '',
-      link: '',
+      portfolio: 'https://adriana-didden.github.io/Responsiveness-Portfolio/',
+      gitHub: 'https://github.com/adriana-didden',
+      link: 'https://www.linkedin.com/in/adriana-didden-487882167',
     },
     {
       name: 'Caleb Crum',
@@ -14,15 +14,15 @@ var devTeam = [
     },
     {
       name: "Julie Berryhill",
-      portfolio: '',
-      gitHub: '',
-      link: '',
+      portfolio: 'https://findjules2.github.io/bootstrapPortfolio/',
+      gitHub: 'https://github.com/Findjules2/',
+      link: 'https://www.linkedin.com/in/julie-berryhill-8978591b/',
     },
     {
       name: "Monica Gonzalez Pena",
       portfolio: 'https://tantatinta.github.io/ProtoPortfolio/',
       gitHub: 'https://github.com/tantatinta',
-      link: 'www.linkedin.com/in/mónica-gonzález-peña-0712a7175',
+      link: 'https://www.linkedin.com/in/mónica-gonzález-peña-0712a7175/',
     }
   ];
   
