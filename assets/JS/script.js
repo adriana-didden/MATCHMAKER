@@ -325,7 +325,6 @@ function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWit
         //RUN GIPHY
         var queryURL = "http://api.giphy.com/v1/gifs/search?api_key=LLdCkhWcP8YLeTTJPLSVyeqLFaiZlHiB&q=congrats";
 
-
           $.ajax({
             url: queryURL,
             method: "GET"
@@ -384,4 +383,4 @@ if (questionNumber === questionsArray.length) {
 //   matchStorage.push(matchObject);
 //       localStorage.setItem("matchStorage", JSON.stringify(matchStorage))
 //       window.location.replace("./match-history.html")
-
+}
