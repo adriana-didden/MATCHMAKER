@@ -175,6 +175,7 @@ var devTeam = [
 
 if(window.location.href === "file:///C:/Users/ccrum/OneDrive/Desktop/Bootcamp/projects/Project1/contact.html"){
 console.log(window.location.href)
+
 function produceContactDisplay(){
   var contactHeading = $("<div id='display-div' class='container'><h2 class='title has-text-centered sriracha'>Developer Contact Information</h2><div id='answer-columns' class='columns'></div></div>")
   $("#contact-body").append(contactHeading);
@@ -186,6 +187,7 @@ function produceContactDisplay(){
 }
 
 
+}
 
 $(document).on('click', '.answer-button', click);
 
@@ -323,18 +325,22 @@ function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWit
         setTimeout(displayMatch, 2000);
 
         //RUN GIPHY
-        // var queryURL = "http://api.giphy.com/v1/gifs/search?api_key=LLdCkhWcP8YLeTTJPLSVyeqLFaiZlHiB&q=congrats";
+        
+        var queryURL = "http://api.giphy.com/v1/gifs/search?api_key=LLdCkhWcP8YLeTTJPLSVyeqLFaiZlHiB&limit=1&rating=g&q=congrats&SameSite=Secure";
+        
+        $(".modal").addClass("is-active");
 
-        //   $.ajax({
-        //     url: queryURL,
-        //     method: "GET"
-        //   }).then(function (giphy) {
-        //     $("#main-body").append("<img>"+giphy);
-        //     console.log("YAY")
+          $.ajax({
+            url: queryURL,
+            method: "GET"
+          }).then(function (giphy) {
 
-        //     settimeout(giphy, 5000);
-        //     $("#main-body").empty();
-        //   });
+            var theGIF = $("<img>")
+            theGIF.attr("src", giphy.data[0].images.original.url)
+            $(".modal-content").append(theGIF);
+            console.log(giphy)
+
+          });
 
       })
     })
@@ -383,4 +389,4 @@ if (questionNumber === questionsArray.length) {
 //   matchStorage.push(matchObject);
 //       localStorage.setItem("matchStorage", JSON.stringify(matchStorage))
 //       window.location.replace("./match-history.html")
-}
+
