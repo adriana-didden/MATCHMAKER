@@ -175,6 +175,7 @@ img {
 .need-margin {
     padding: 20px;
     padding-bottom: 5px;
+    
 }
 
 #three-dot {
@@ -247,6 +248,7 @@ img {
   #img1-position {
     bottom: 25px;
     left: 155px;
+    
   }
 
   #img2-position {
@@ -309,4 +311,54 @@ img {
       left: 0px;
     }
 
+    .slideshow-container{
+      margin-left: 24px;
+      margin-right: 24px;
+    }
+
   }
+
+  @media screen and (max-width: 321px){
+
+    #img1-position {
+      bottom: 20px;
+      left: 45px;
+      font-size: x-small;
+    }
+  
+    #img2-position {
+      bottom: 20px;
+      left: 45px;
+      font-size: x-small;
+    }
+    
+    #img3-position {
+      bottom: 20px;
+      left: 0px;
+      font-size: x-small;
+    }
+
+  }
+  
+  @media screen and (max-width: 404px){
+
+    #img1-position {
+      bottom: 20px;
+      left: 45px;
+      font-size: x-small;
+    }
+  
+    #img2-position {
+      bottom: 20px;
+      left: 45px;
+      font-size: x-small;
+    }
+    
+    #img3-position {
+      bottom: 20px;
+      left: 45px;
+      font-size: x-small;
+    }
+
+  }
+
