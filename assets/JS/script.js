@@ -323,18 +323,18 @@ function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWit
         setTimeout(displayMatch, 2000);
 
         //RUN GIPHY
-        var queryURL = "http://api.giphy.com/v1/gifs/search?api_key=LLdCkhWcP8YLeTTJPLSVyeqLFaiZlHiB&q=congrats";
+        // var queryURL = "http://api.giphy.com/v1/gifs/search?api_key=LLdCkhWcP8YLeTTJPLSVyeqLFaiZlHiB&q=congrats";
 
-          $.ajax({
-            url: queryURL,
-            method: "GET"
-          }).then(function (giphy) {
-            $("#main-body").append("<img>"+giphy);
-            console.log("YAY")
+        //   $.ajax({
+        //     url: queryURL,
+        //     method: "GET"
+        //   }).then(function (giphy) {
+        //     $("#main-body").append("<img>"+giphy);
+        //     console.log("YAY")
 
-            settimeout(giphy, 5000);
-            $("#main-body").empty();
-          });
+        //     settimeout(giphy, 5000);
+        //     $("#main-body").empty();
+        //   });
 
       })
     })
