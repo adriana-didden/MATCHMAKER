@@ -4,7 +4,7 @@ var devTeam = [
       name: 'Adriana J Didden',
       portfolio: 'https://adriana-didden.github.io/Responsiveness-Portfolio/',
       gitHub: 'https://github.com/adriana-didden',
-      link: 'www.linkedin.com/in/adriana-didden-487882167',
+      link: 'https://www.linkedin.com/in/adriana-didden-487882167',
     },
     {
       name: 'Caleb Crum',
@@ -22,7 +22,7 @@ var devTeam = [
       name: "Monica Gonzalez Pena",
       portfolio: 'https://tantatinta.github.io/ProtoPortfolio/',
       gitHub: 'https://github.com/tantatinta',
-      link: 'www.linkedin.com/in/mónica-gonzález-peña-0712a7175',
+      link: 'https://www.linkedin.com/in/mónica-gonzález-peña-0712a7175/',
     }
   ];
   
