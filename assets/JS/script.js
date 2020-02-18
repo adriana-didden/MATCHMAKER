@@ -207,37 +207,41 @@ function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWit
         //   localStorage.setItem("matches", JSON.stringify(acceptedDogIds));          
         // }
 
-        function dogBreed() {
-          dogId = (response.data.animals[i].id);
-          var dogBreedPrimary = (response.data.animals[i].breeds.primary);
-          var dogBreedSecondary = (response.data.animals[i].breeds.secondary);
-          var dogBreedMixed = (response.data.animals[i].breeds.mixed);
-          if (dogBreedPrimary && dogBreedSecondary && dogBreedMixed === true) {
-            return "This cutiepie is a " + dogBreedPrimary + " and " + dogBreedSecondary + " mix";
-          }
-          if (dogBreedPrimary && dogBreedSecondary === null && dogBreedMixed === true) {
-            return "This cutiepie is mainly a " + dogBreedPrimary + " mix";
-          }
+        // function dogBreed() {
+        //   dogId = (response.data.animals[i].id);
+        //   var dogBreedPrimary = (response.data.animals[i].breeds.primary);
+        //   var dogBreedSecondary = (response.data.animals[i].breeds.secondary);
+        //   var dogBreedMixed = (response.data.animals[i].breeds.mixed);
+        //   if (dogBreedPrimary && dogBreedSecondary && dogBreedMixed === true) {
+        //     return "This cutiepie is a " + dogBreedPrimary + " and " + dogBreedSecondary + " mix";
+        //   }
+        //   if (dogBreedPrimary && dogBreedSecondary === null && dogBreedMixed === true) {
+        //     return "This cutiepie is mainly a " + dogBreedPrimary + " mix";
+        //   }
 
           function dogBreed() {
             dogId = (response.data.animals[i].id);
             var dogBreedPrimary = (response.data.animals[i].breeds.primary);
             var dogBreedSecondary = (response.data.animals[i].breeds.secondary);
+            console.log(dogBreedSecondary+ '<========')
             var dogBreedMixed = (response.data.animals[i].breeds.mixed);
             if (dogBreedPrimary && dogBreedSecondary && dogBreedMixed === true) {
               return "This cutiepie is a " + dogBreedPrimary + " and " + dogBreedSecondary + " mix";
             }
-            if (dogBreedPrimary && dogBreedSecondary === null && dogBreedMixed === true) {
+            if (dogBreedPrimary && !dogBreedSecondary && dogBreedMixed === true) {
+              console.log(1)
               return "This cutiepie is mainly a " + dogBreedPrimary + " mix";
             }
-            if (dogBreedPrimary && dogBreedSecondary === null && dogBreedMixed === false) {
+            if (dogBreedPrimary && !dogBreedSecondary && dogBreedMixed === false) {
+              console.log(2)
               return "This cutiepie is a " + dogBreedPrimary;
             }
           }
-        }
+        var description = response.data.animals[i].description
+        if(!description) description =""
 
         $('#match-main-display').remove();
-        var matchDisplay = $("<div id='match-main-display' class='container has-text-centered'><img id='match-img' src=" + response.data.animals[i].photos[0].medium + "> <h1 id='match-name' class='title is-3 has-text-white sriracha'>" + response.data.animals[i].name + "</h1><h2 id='match-dog-breed' class='subtitle is-4 has-text-white sriracha'>" + dogBreed() + "</h2><p id='match-description' class='is-size-5 has-text-white mali'>" + response.data.animals[i].description + "</p><button id='accept-match' class='button is-danger is-size-2 has-text-weight-bold sriracha'>Accept Match!!!</button><br/><button id='decline-match' class='button is-dark is-size-4 sriracha'>Decline Match</button></div>");
+        var matchDisplay = $("<div id='match-main-display' class='container has-text-centered'><img id='match-img' src=" + response.data.animals[i].photos[0].medium + "> <h1 id='match-name' class='title is-3 has-text-white sriracha'>" + response.data.animals[i].name + "</h1><h2 id='match-dog-breed' class='subtitle is-4 has-text-white sriracha'>" + dogBreed() + "</h2><p id='match-description' class='is-size-5 has-text-white mali'>" + description + "</p><button id='accept-match' class='button is-danger is-size-2 has-text-weight-bold sriracha'>Accept Match!!!</button><br/><button id='decline-match' class='button is-dark is-size-4 sriracha'>Decline Match</button></div>");
         $('#main-body').append(matchDisplay);
 
         var acceptBtnClicked;
@@ -265,33 +269,33 @@ function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWit
         $(".modal-content").html("")
         //RUN GIPHY
 
-        var queryURL = "http://api.giphy.com/v1/gifs/search?api_key=LLdCkhWcP8YLeTTJPLSVyeqLFaiZlHiB&limit=1&rating=g&q=congrats&SameSite=Secure";
+        // var queryURL = "http://api.giphy.com/v1/gifs/search?api_key=LLdCkhWcP8YLeTTJPLSVyeqLFaiZlHiB&limit=1&rating=g&q=congrats&SameSite=Secure";
 
-        $(".modal").addClass("is-active");
+        // $(".modal").addClass("is-active");
 
-        $.ajax({
-          url: queryURL,
-          method: "GET"
-        }).then(function (giphy) {
+        // $.ajax({
+        //   url: queryURL,
+        //   method: "GET"
+        // }).then(function (giphy) {
 
-          var theGIF = $("<img>")
-          theGIF.attr("src", giphy.data[0].images.original.url)
-          $(".modal-content").append(theGIF);
-          console.log(giphy)
+        //   var theGIF = $("<img>")
+        //   theGIF.attr("src", giphy.data[0].images.original.url)
+        //   $(".modal-content").append(theGIF);
+        //   console.log(giphy)
 
-        });
-        var modal = document.getElementsByClassName("modal is-active");
+        // });
+        // var modal = document.getElementsByClassName("modal is-active");
 
-        window.onclick = function (event) {
-          if (event.target == modal) {
-            modal.removeClass("is-active")
-          }
-        };
-        $(".modal-background").click(() => closeModal())
-        $(".modal-close").click(() => closeModal())
-        const closeModal = () => {
-          $(".modal").removeClass("is-active")
-        }
+        // window.onclick = function (event) {
+        //   if (event.target == modal) {
+        //     modal.removeClass("is-active")
+        //   }
+        // };
+        // $(".modal-background").click(() => closeModal())
+        // $(".modal-close").click(() => closeModal())
+        // const closeModal = () => {
+        //   $(".modal").removeClass("is-active")
+        // }
 
       })
     })
