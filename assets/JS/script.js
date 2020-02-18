@@ -262,6 +262,7 @@ function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWit
         $('#decline-match').remove();
         $('#match-main-display').append($("<h1 id='congrats' class='title is-1 has-text-white sriracha'>Your Match has been Saved</h1>"));
         setTimeout(displayMatch, 2000);
+        
         $(".modal-content").html("")
         //RUN GIPHY
 
