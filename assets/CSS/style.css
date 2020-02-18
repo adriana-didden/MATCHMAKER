@@ -61,8 +61,14 @@ nav {
     color: #4a4a4a;
 }
 
-
-
+a {
+  color: #ffffff;
+  text-decoration: none;
+}
+a:hover {
+  font-weight: bolder;
+  color: #ffffff;
+}
 span {
   color: #ffffff;
 }
