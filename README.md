@@ -11,4 +11,6 @@
 
 ![Screenshot of Match History](./assets/img/matchHistory.png)
 
+![Screenshot of Unicorn](./assets/img/unicorn.png)
+
 ![Screenshot of Deveolper Contact Info](./assets/img/developerContactInfo.png)
