@@ -61,12 +61,12 @@ displayTitlePage();
 var questionsArray = [
   {
     title: "What fits you best:",
-    choices: ["Man looking for a woman", "Woman looking for a man", "Man looking for a man", "Woman looking for a woman"],
+    choices: ["Person looking for a female", "Person looking for a male", "Person looking for a female OR a male"],
 
   },
   {
     title: "What are your thoughts on children?",
-    choices: ["Want someday", "Don't want", "Have and want more", "Have and don't want more"],
+    choices: ["Want someday", "Have and want more", "Don't want", "Have and don't want more"],
 
   },
   {
@@ -81,7 +81,7 @@ var questionsArray = [
   },
   {
     title: "What song fits you best?",
-    choices: ["Billie Eilish - bad guy", "Lil Bow Wow - Bow Wow (That's My Name) ft. Snoop Dogg", "Alicia Keys - Underdog", "Baha Men - Who Let The Dogs Out "],
+    choices: ["Lil Bow Wow - Bow Wow (That's My Name) ft. Snoop Dogg", "Alicia Keys - Underdog", "Baha Men - Who Let The Dogs Out", "Billie Eilish - Bad guy"],
 
   }
 ];
@@ -133,32 +133,27 @@ function filter() {
   var coatType;
   var goodWithCats;
 
-  //["Man looking for a woman", "Woman looking for a man", "Man looking for a man", "Woman looking for a woman"],
-  if (answer1 === "Man looking for a woman" || answer1 === "Woman looking for a woman") {
-    searchGender = "female";
-  } else { searchGender = "male" }
-
-  //["Want someday", "Don't want", "Have and want more", "Have and don't want more"]
+  if (answer1 === "Person looking for a female") {
+    searchGender = "female";} 
+  else if (answer2 === "Person looking for a male") { 
+    searchGender = "male";}
+  else if (answer3 === "Person looking for a female OR a male") { 
+    searchGender = "female,male";}  
   if (answer2 === "Don't want") {
     goodWithChildren = false;
-  } else { goodWithChildren = true }
-
-
-  // "What is your preferred style?",choices: [short, medium, long, wire,"Preppy" medium, "Hipster" wire, "Casual" short hair, "Trendy" long ]
+  } else { goodWithChildren = true }  
   if (answer3 === "Preppy") {
-    coatType = "medium,short";
+    coatType = "medium,short,hairless,curly";
   }
   else if (answer3 === "Hipster") {
-    coatType = "wire,short";
+    coatType = "wire,short,hairless,curly";
   }
   else if (answer3 === "Casual") {
-    coatType = "short";
+    coatType = "short,hairless,curly";
   }
   else if (answer3 === "Trendy") {
-    coatType = "long,short";
-  }
-
-  //["Slender", "Big and beautiful" xlarge, "About average" large, "Athletic and toned" medium: small, medium, large, xlarge]
+    coatType = "long,short,hairless,curly";
+  }  
   if (answer4 === "Slender") {
     dogSize = "small";
   } else if (answer4 === "Big and beautiful") {
@@ -167,15 +162,12 @@ function filter() {
     dogSize = "large";
   } else if (answer4 === "Athletic and toned") {
     dogSize = "medium";
-  }
-
-  //["Billie Eilish - bad guy", "Lil Bow Wow - Bow Wow (That's My Name) ft. Snoop Dogg", "Alicia Keys - Underdog", "Baha Men - Who Let The Dogs Out "]
-  if (answer5 === "Billie Eilish - bad guy") {
+  } 
+  if (answer5 === "Billie Eilish - Bad guy") {
     goodWithCats = true;
   } else {
     goodWithCats = false;
   }
-
   if (questionNumber === questionsArray.length) {
     buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWithCats);
   }
