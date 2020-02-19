@@ -46,6 +46,7 @@ button:hover {
 
 .navbar-item:hover {
     box-shadow: 0 12px 16px 0 #6504B5, 0 17px 50px 0 rgba(248,12,3,0.24);
+    color: #6504B5;
 }
 
 nav {
