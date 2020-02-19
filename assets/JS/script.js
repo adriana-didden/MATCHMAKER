@@ -5,7 +5,6 @@ var pf = new petfinder.Client({
 
 //Geolocation functions
 
-
 var coordinates;
 
 $(window).on("load", function () {
@@ -25,8 +24,6 @@ function getLocation() {
     alert("Geolocation is not supported by this browser.");
   }
 }
-
-
 
 function showPosition(position) {
   var lat = position.coords.latitude;
@@ -52,8 +49,8 @@ $(document).ready(function () {
 // Title Page
 
 function displayTitlePage() {
-  var mainEl = $("<div class='container has-text-centered' id='title-page-div'><h1 id='welcome-to-matchmaker' class='title is-1 has-text-white sriracha'>Welcome to MATCHMAKER</h1><hr/><p id='title-page-subtext' class='subtitle has-text-white mali'>Do you long-for companionship? Find it here at MATCHMAKER, where we connect you with your future soulmate based on our 5 minute questionaire. Press the START button below to begin your odyssey of love.</p><button class='button is-danger is-size-2 has-text-weight-bold sriracha' id='start-button'>START</button></div>")
-  $('#main-body').append(mainEl);
+  var mainEl = $("<div class='column is-half has-text-centered'><div class='container has-text-centered' id='title-page-div'><h1 id='welcome-to-matchmaker' class='title is-1 has-text-white sriracha'>Welcome to MATCHMAKER</h1><hr/><p id='title-page-subtext' class='subtitle has-text-white mali'>Do you long-for companionship? Find it here at MATCHMAKER, where we connect you with your future soulmate based on our 5 question quiz. Press the START button below to begin your odyssey of love.</p><button class='button is-danger is-size-2 has-text-weight-bold sriracha' id='start-button'>START</button></div></div>")
+  $('.columns').prepend(mainEl);
   $(document).on('click', '#start-button', displayQuestionOneAtATime);
 }
 
@@ -106,14 +103,7 @@ function displayQuestionOneAtATime() {
       var answerDiv = $("<div class='column has-text-centered div-within-answer-div'><div class='column is-danger has-text-weight-bold has-text-white mali answer-button'>" + questionsArray[questionNumber].choices[i] + "</div></div>")
       $(".columns").append(answerDiv);
     }
-
-  } else {
-
-    // Add Code that moves to Match Page
-
-
-  }
-
+  } 
 }
 
 
@@ -124,7 +114,6 @@ function click(event) {
   event.preventDefault();
   questionNumber++;
   answers.push(this.textContent);
-
   displayQuestionOneAtATime();
   filter();
 };
@@ -189,7 +178,6 @@ function filter() {
 
   if (questionNumber === questionsArray.length) {
     buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWithCats);
-    // console.log(searchGender)
   }
 
 }
@@ -236,12 +224,18 @@ function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWit
         }
         
         $('#match-main-display').remove();
-        if (response.data.animals.length) {
+        if (response.data.animals.length && response.data.animals.length > i) {
+          console.log(response.data.animals.length, response.data.animals.length > i, response.data.animals.length, i)
           var description = response.data.animals[i].description
           if (!description) description = "";
-          var matchDisplay = $("<div id='match-main-display' class='container has-text-centered'><img id='match-img' src=" + response.data.animals[i].photos[0].medium + "> <h1 id='match-name' class='title is-3 has-text-white sriracha'>" + response.data.animals[i].name + "</h1><h2 id='match-dog-breed' class='subtitle is-4 has-text-white sriracha'>" + dogBreed() + "</h2><p id='match-description' class='is-size-5 has-text-white mali'>" + description + "</p><button id='accept-match' class='button is-danger is-size-2 has-text-weight-bold sriracha'>Accept Match!!!</button><br/><button id='decline-match' class='button is-dark is-size-4 sriracha'>Decline Match</button></div>");
+          var thePhoto =""
+           if(response.data.animals[i].photos.length){
+             console.log('here')
+             thePhoto = response.data.animals[i].photos[0].medium 
+           }
+          var matchDisplay = $("<div id='match-main-display' class='container has-text-centered'><img id='match-img' src=" + thePhoto+ "> <h1 id='match-name' class='title is-3 has-text-white sriracha'>" + response.data.animals[i].name + "</h1><h2 id='match-dog-breed' class='subtitle is-4 has-text-white sriracha'>" + dogBreed() + "</h2><p id='match-description' class='is-size-5 has-text-white mali'>" + description + "</p><button id='accept-match' class='button is-danger is-size-2 has-text-weight-bold sriracha'>Accept Match!!!</button><br/><button id='decline-match' class='button is-dark is-size-4 sriracha'>Decline Match</button></div>");
         }
-        else if(undefined){ //ADRIANA, ADD YOUR CODE HERE TO POP UP MODAL
+        else { //ADRIANA, ADD YOUR CODE HERE TO POP UP MODAL
           var reload = $(".modal")
           reload.addClass("is-active");
           $(".modal-content").append(reload);
@@ -253,7 +247,6 @@ function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWit
 
         $("#accept-match").click(function () {
           if (acceptBtnClicked = true) {
-            console.log(dogId);
             acceptedDogIds.push(dogId);
             localStorage.setItem("matches", JSON.stringify(acceptedDogIds))
           }
