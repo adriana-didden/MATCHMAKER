@@ -157,15 +157,15 @@ function filter() {
 
   // "What is your preferred style?",choices: [short, medium, long, wire,"Preppy" medium, "Hipster" wire, "Casual" short hair, "Trendy" long ]
   if (answer3 === "Preppy") {
-    coatType = "medium";
+    coatType = "medium,short";
   }
-  // else if (answer3 === "Hipster") {
-  //   coatType = "wire";
-  // } 
+  else if (answer3 === "Hipster") {
+    coatType = "wire,short";
+  } 
   else if (answer3 === "Casual") {
     coatType = "short";
   } else if (answer3 === "Trendy") {
-    coatType = "long";
+    coatType = "long,short";
   }
 
   //["Slender", "Big and beautiful" xlarge, "About average" large, "Athletic and toned" medium: small, medium, large, xlarge]
@@ -208,7 +208,7 @@ function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWit
       var responseArr = response.data;
       var acceptedDogIds = JSON.parse(localStorage.getItem("matches") || "[]");
 
-      // console.log(response.data);
+      console.log(response.data);
       var dogId;
       var i = 0;
       function displayMatch() {
