@@ -196,14 +196,16 @@ function filter() {
 
 function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWithCats) {
   console.log(coordinates)
-  var params = { type: "dog",  gender: searchGender, good_with_children: goodWithChildren, coat: coatType, size: dogSize, good_with_cats: goodWithCats}
+  var params = { type: "dog", location:coordinates, gender: searchGender, good_with_children: goodWithChildren, coat: coatType, size: dogSize, good_with_cats: goodWithCats}
   console.log(params)
   if(coordinates){
     params.location = coordinates
     console.log(params.location)
     params.distance = 100
   }
-  pf.animal.search()
+  
+  pf.animal.search(params)
+
     .then(function (response) {
       var responseArr = response.data;
       var acceptedDogIds = JSON.parse(localStorage.getItem("matches") || "[]");
