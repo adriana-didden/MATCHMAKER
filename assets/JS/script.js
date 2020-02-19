@@ -238,6 +238,7 @@ function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWit
         else { //ADRIANA, ADD YOUR CODE HERE TO POP UP MODAL
           var reload = $(".modal")
           reload.addClass("is-active");
+          reload.html()
           $(".modal-content").append(reload);
           console.log("RELOAD");
         }

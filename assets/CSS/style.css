@@ -274,25 +274,11 @@ img {
     color: #f2f2f2;
     font-size: 15px;
     opacity: 0.75;
-    position: absolute;
+    /* position: absolute; */
     text-align: center;
   }
   
-  #img1-position {
-    bottom: 25px;
-    left: 155px;
-    
-  }
-
-  #img2-position {
-    bottom: 25px;
-    left: 155px;
-  }
   
-  #img3-position {
-    bottom: 25px;
-    left: 75px;
-  }
   /* The dots/bullets/indicators */
   .dot {
     cursor: pointer;
@@ -326,72 +312,3 @@ img {
     from {opacity: .4}
     to {opacity: 1}
   }
-
-  @media screen and (max-width: 456px){
-
-    #img1-position {
-      bottom: 25px;
-      left: 65px;
-    }
-  
-    #img2-position {
-      bottom: 25px;
-      left: 65px;
-    }
-    
-    #img3-position {
-      bottom: 25px;
-      left: 0px;
-    }
-
-    .slideshow-container{
-      margin-left: 24px;
-      margin-right: 24px;
-    }
-
-  }
-
-  @media screen and (max-width: 321px){
-
-    #img1-position {
-      bottom: 20px;
-      left: 45px;
-      font-size: x-small;
-    }
-  
-    #img2-position {
-      bottom: 20px;
-      left: 45px;
-      font-size: x-small;
-    }
-    
-    #img3-position {
-      bottom: 20px;
-      left: 0px;
-      font-size: x-small;
-    }
-
-  }
-  
-  @media screen and (max-width: 404px){
-
-    #img1-position {
-      bottom: 20px;
-      left: 45px;
-      font-size: x-small;
-    }
-  
-    #img2-position {
-      bottom: 20px;
-      left: 45px;
-      font-size: x-small;
-    }
-    
-    #img3-position {
-      bottom: 20px;
-      left: 45px;
-      font-size: x-small;
-    }
-
-  }
-
