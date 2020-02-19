@@ -1,16 +1,19 @@
 var pf = new petfinder.Client({
-  apiKey: "rfKtqLNMX2qtPkyR7cDRNWJgJwJ3kxAyzoJzYFwvt1S7IB3Hnb",
-  secret: "NGBUpIOll0vatwymXSITahluWEoK6W0hWyyBSvCN"
+  apiKey: "yFhWUo2yQ3zi2yQgCFJjR8j5ik1tlTX7iZsSZJMQvU55hD3z44",
+  secret: "KhkHM7EJA6UjUWgqvL6e3nETORjUeXN0gOAx92tN"
 });
 
 //Geolocation functions
-//ADD CODE to alert "allow browser to know your location" just once
+
+
 var coordinates;
 
 $(window).on("load", function () {
   if (!localStorage.getItem("getLocation")) {
     getLocation();
     localStorage.setItem("getLocation", "true");
+  } else {
+    coordinates = localStorage.getItem("coordinates")
   }
 })
 
@@ -23,20 +26,22 @@ function getLocation() {
   }
 }
 
+
+
 function showPosition(position) {
   var lat = position.coords.latitude;
   var lon = position.coords.longitude;
   coordinates = lat + "," + lon;
+  localStorage.setItem("coordinates", coordinates)
+
 }
 
 // Navbar Hamburger 
 
 $(document).ready(function () {
 
-  // Check for click events on the navbar burger icon
   $(".navbar-burger").click(function () {
 
-    // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
     $(".navbar-burger").toggleClass("is-active");
     $(".navbar-menu").toggleClass("is-active");
 
@@ -51,10 +56,8 @@ function displayTitlePage() {
   $('#main-body').append(mainEl);
   $(document).on('click', '#start-button', displayQuestionOneAtATime);
 }
+
 displayTitlePage();
-
-
-
 
 // Questions 
 
@@ -62,22 +65,22 @@ var questionsArray = [
   {
     title: "What fits you best:",
     choices: ["Man looking for a woman", "Woman looking for a man", "Man looking for a man", "Woman looking for a woman"],
-    //object.animals.0.colors.gender[2] "male"
+
   },
   {
     title: "What are your thoughts on children?",
     choices: ["Want someday", "Don't want", "Have and want more", "Have and don't want more"],
-    //object.animals.0.envirenment: {children: true, dogs: true, cats: null}
+
   },
   {
     title: "What is your preferred style?",
     choices: ["Preppy", "Hipster", "Casual", "Trendy"],
-    //object.animals.0.photos.status: "adoptable"
+
   },
   {
     title: "What is your preferred body type?",
     choices: ["Slender", "Big and beautiful", "About average", "Athletic and toned"],
-    //object.animals.0.attributes: house-trained: "true"
+
   },
   {
     title: "What song fits you best?",
@@ -129,7 +132,7 @@ function click(event) {
 
 
 function filter() {
-  // ADD BACK-END CODE HERE that captures filter criteria
+
   var answer1 = answers[0];
   var answer2 = answers[1];
   var answer3 = answers[2];
@@ -154,15 +157,16 @@ function filter() {
 
   // "What is your preferred style?",choices: [short, medium, long, wire,"Preppy" medium, "Hipster" wire, "Casual" short hair, "Trendy" long ]
   if (answer3 === "Preppy") {
-    coatType = "medium";
+    coatType = "medium,short";
   }
-  // else if (answer3 === "Hipster") {
-  //   coatType = "wire";
-  // } 
+  else if (answer3 === "Hipster") {
+    coatType = "wire,short";
+  }
   else if (answer3 === "Casual") {
     coatType = "short";
-  } else if (answer3 === "Trendy") {
-    coatType = "long";
+  }
+  else if (answer3 === "Trendy") {
+    coatType = "long,short";
   }
 
   //["Slender", "Big and beautiful" xlarge, "About average" large, "Athletic and toned" medium: small, medium, large, xlarge]
@@ -185,13 +189,13 @@ function filter() {
 
   if (questionNumber === questionsArray.length) {
     buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWithCats);
-    console.log(searchGender)
+    // console.log(searchGender)
   }
-  // buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWithCats);
+
 }
 
 
-ffunction buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWithCats) {
+function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWithCats) {
   console.log(coordinates)
   var params = { type: "dog", location: coordinates, status: "adoptable", gender: searchGender, good_with_children: goodWithChildren, coat: coatType, size: dogSize, good_with_cats: goodWithCats }
   console.log(params)
@@ -237,11 +241,11 @@ ffunction buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWi
           if (!description) description = "";
           var matchDisplay = $("<div id='match-main-display' class='container has-text-centered'><img id='match-img' src=" + response.data.animals[i].photos[0].medium + "> <h1 id='match-name' class='title is-3 has-text-white sriracha'>" + response.data.animals[i].name + "</h1><h2 id='match-dog-breed' class='subtitle is-4 has-text-white sriracha'>" + dogBreed() + "</h2><p id='match-description' class='is-size-5 has-text-white mali'>" + description + "</p><button id='accept-match' class='button is-danger is-size-2 has-text-weight-bold sriracha'>Accept Match!!!</button><br/><button id='decline-match' class='button is-dark is-size-4 sriracha'>Decline Match</button></div>");
         }
-        else{ //ADRIANA, ADD YOUR CODE HERE TO POP UP MODAL
-          var matchDisplay = $("#reloadQuiz")
-          matchDisplay.addClass("is-active");
-          matchDisplay.html("<button>"+"please try again")
-
+        else if(undefined){ //ADRIANA, ADD YOUR CODE HERE TO POP UP MODAL
+          var reload = $(".modal")
+          reload.addClass("is-active");
+          $(".modal-content").append(reload);
+          console.log("RELOAD");
         }
         $('#main-body').append(matchDisplay);
 
@@ -261,22 +265,23 @@ ffunction buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWi
 
 
       displayMatch();
-      $(document).on('click', '#decline-match', function () { getGif("dog+sad")});
-      $(document).on('click', '#accept-match', function () { getGif("dog+happy")})
+      $(document).on('click', '#decline-match', function () { getGif("dog+sad") });
+      $(document).on('click', '#accept-match', function () { getGif("dog+happy") })
 
-      function getGif(term){
+      function getGif(term) {
         $('#accept-match').remove();
         $('#decline-match').remove();
         $('#match-main-display').append($("<h1 id='congrats' class='title is-1 has-text-white sriracha'>Your Match has been Saved</h1>"));
         setTimeout(displayMatch, 2000);
 
         $(".modal-content").html("")
+
         //RUN GIPHY
 
-        var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=LLdCkhWcP8YLeTTJPLSVyeqLFaiZlHiB&limit=10&rating=g&q="+term+"&SameSite=Secure";
+        var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=LLdCkhWcP8YLeTTJPLSVyeqLFaiZlHiB&limit=10&rating=g&q=" + term + "&SameSite=Secure";
 
         $(".modal").addClass("is-active");
-        console.log(term , queryURL)
+        console.log(term, queryURL)
         $.ajax({
           url: queryURL,
           method: "GET"
@@ -306,7 +311,7 @@ ffunction buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWi
       }
     })
     .catch(function (error) {
-      // console.log(error);
+      console.log(error);
     });
 
 
@@ -318,71 +323,21 @@ if (questionNumber === questionsArray.length) {
 
 }
 
-
-
-
 // Match History
 
 
-function renderMatchHistory(event) {
-  event.preventDefault();
-  let matchStorage = JSON.parse(localStorage.getItem("matchStorage"))
-
-  if (matchStorage) {
-    matchStorage.sort(function (acceptedDogIds) {
-
-      // ADD HERE
-    })
-    for (var i = 0; i < matchStorage.length; i++) {
-      var listIds = document.createElement('')
-    }
-  }
-
-}
-
-// function saveToLocalStorage(event){
+// function renderMatchHistory(event) {
 //   event.preventDefault();
-//   $("").empty();
+//   let matchStorage = JSON.parse(localStorage.getItem("matchStorage"))
 
-//   var matchStorage = JSON.parse(localStorage.getItem("matchStorage"))
-//   var intials = document.getElementById("intials");
+//   if (matchStorage) {
+//     matchStorage.sort(function (acceptedDogIds) {
 
-//   if (!matchStorage){matchStorage = []};
-//   var matchObject = {/*Fill with key value pairs*/}
-
-//   matchStorage.push(matchObject);
-//       localStorage.setItem("matchStorage", JSON.stringify(matchStorage))
-//       window.location.replace("./match-history.html")
-// var pf = new petfinder.Client({
-//   apiKey: "rfKtqLNMX2qtPkyR7cDRNWJgJwJ3kxAyzoJzYFwvt1S7IB3Hnb",
-//   secret: "NGBUpIOll0vatwymXSITahluWEoK6W0hWyyBSvCN"
-// });
-
-
-// function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWithCats) {
-
-//   pf.animal.search({ type: "dog", location: coordinates, gender: searchGender, good_with_children: goodWithChildren, coat: coatType, size: dogSize, good_with_cats: goodWithCats})
-//   .then(function (response) {
-//       var responseArr = response.data;
-//       // for (var i = 0; i < responseArr.length; i++)
-//       // console.log(response.data.animals[0].contact);
-//       //console.log(response.data)
-//       console.log(response.data);
-//       var i = 0;
-//       function displayMatch(){}
-
-// $("#accept").on("click", function (event) {
-//     event.preventDefault()
-
-//     var dogId = response.data.animals[i].id
-//     var queryURL = "https://unpkg.com/@petfinder/petfinder-js/dist/petfinder.min.js" + dogId + pf;
-//     console.log(queryURL)
-//     $.ajax({
-//         url: queryURL,
-//         method: "GET"
-//     }).then(function (response) {
-//         console.log(queryURL);
-//         console.log(response);
-
+//       // ADD HERE
 //     })
-// })
+//     for (var i = 0; i < matchStorage.length; i++) {
+//       var listIds = document.createElement('')
+//     }
+//   }
+
+// }
