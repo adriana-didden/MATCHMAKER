@@ -187,8 +187,13 @@ function filter() {
 
 
 function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWithCats) {
-
-  pf.animal.search({ type: "dog", location: coordinates, gender: searchGender, good_with_children: goodWithChildren, coat: coatType, size: dogSize, good_with_cats: goodWithCats })
+  console.log(coordinates)
+  var params = { type: "dog",  gender: searchGender, good_with_children: goodWithChildren, coat: coatType, size: dogSize, good_with_cats: goodWithCats }
+  if(coordinates){
+    params.location = coordinates
+    params.distance = 100
+  }
+  pf.animal.search()
     .then(function (response) {
       var responseArr = response.data;
       var acceptedDogIds = JSON.parse(localStorage.getItem("matches") || "[]");
@@ -238,27 +243,32 @@ function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWit
       }
 
       displayMatch();
-      $(document).on('click', '#decline-match', displayMatch);
-      $(document).on('click', '#accept-match', function () {
+      $(document).on('click', '#decline-match', function () { getGif("dog+sad")});
+      $(document).on('click', '#accept-match', function () { getGif("dog+happy")})
+
+      function getGif(term){
         $('#accept-match').remove();
         $('#decline-match').remove();
         $('#match-main-display').append($("<h1 id='congrats' class='title is-1 has-text-white sriracha'>Your Match has been Saved</h1>"));
         setTimeout(displayMatch, 2000);
+
         $(".modal-content").html("")
         
         //RUN GIPHY
 
-        var queryURL = "http://api.giphy.com/v1/gifs/search?api_key=LLdCkhWcP8YLeTTJPLSVyeqLFaiZlHiB&limit=1&rating=g&q=congrats&SameSite=Secure";
+        var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=LLdCkhWcP8YLeTTJPLSVyeqLFaiZlHiB&limit=10&rating=g&q="+term+"&SameSite=Secure";
 
         $(".modal").addClass("is-active");
-
+        console.log(term , queryURL)
         $.ajax({
           url: queryURL,
           method: "GET"
         }).then(function (giphy) {
-
+          var arrGif = giphy.data
+          var picked = Math.floor(Math.random() * arrGif.length)
+          console.log(picked, arrGif.length)
           var theGIF = $("<img>")
-          theGIF.attr("src", giphy.data[0].images.original.url)
+          theGIF.attr("src", arrGif[picked].images.original.url)
           $(".modal-content").append(theGIF);
           console.log(giphy)
 
@@ -276,7 +286,7 @@ function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWit
           $(".modal").removeClass("is-active")
         }
 
-      })
+      }
     })
     .catch(function (error) {
       console.log(error);
@@ -290,9 +300,6 @@ if (questionNumber === questionsArray.length) {
   buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWithCats);
 
 }
-
-
-
 
 // Match History
 
