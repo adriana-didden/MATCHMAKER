@@ -3,10 +3,38 @@ var pf = new petfinder.Client({
   secret: "KhkHM7EJA6UjUWgqvL6e3nETORjUeXN0gOAx92tN"
 });
 
-//Geolocation functions
+var questionsArray = [
+  {
+    title: "What fits you best:",
+    choices: ["Person looking for a female", "Person looking for a male", "Person looking for a female OR a male"],
 
+  },
+  {
+    title: "What are your thoughts on children?",
+    choices: ["Want someday", "Have and want more", "Don't want", "Have and don't want more"],
+
+  },
+  {
+    title: "What is your preferred style?",
+    choices: ["Preppy", "Hipster", "Casual", "Trendy"],
+
+  },
+  {
+    title: "What is your preferred body type?",
+    choices: ["Slender", "Big and beautiful", "About average", "Athletic and toned"],
+
+  },
+  {
+    title: "What song fits you best?",
+    choices: ["Lil Bow Wow - Bow Wow (That's My Name) ft. Snoop Dogg", "Alicia Keys - Underdog", "Baha Men - Who Let The Dogs Out", "Billie Eilish - Bad guy"],
+
+  }
+];
 var coordinates;
+var questionNumber = 0;
+var answers = [];
 
+//Geolocation functions
 $(window).on("load", function () {
   if (!localStorage.getItem("getLocation")) {
     getLocation();
@@ -45,7 +73,6 @@ $(document).ready(function () {
   });
 });
 
-
 // Title Page
 
 function displayTitlePage() {
@@ -56,41 +83,7 @@ function displayTitlePage() {
 
 displayTitlePage();
 
-// Questions 
-
-var questionsArray = [
-  {
-    title: "What fits you best:",
-    choices: ["Person looking for a female", "Person looking for a male", "Person looking for a female OR a male"],
-
-  },
-  {
-    title: "What are your thoughts on children?",
-    choices: ["Want someday", "Have and want more", "Don't want", "Have and don't want more"],
-
-  },
-  {
-    title: "What is your preferred style?",
-    choices: ["Preppy", "Hipster", "Casual", "Trendy"],
-
-  },
-  {
-    title: "What is your preferred body type?",
-    choices: ["Slender", "Big and beautiful", "About average", "Athletic and toned"],
-
-  },
-  {
-    title: "What song fits you best?",
-    choices: ["Lil Bow Wow - Bow Wow (That's My Name) ft. Snoop Dogg", "Alicia Keys - Underdog", "Baha Men - Who Let The Dogs Out", "Billie Eilish - Bad guy"],
-
-  }
-];
-
-
-
 // question display functions
-
-var questionNumber = 0;
 
 function displayQuestionOneAtATime() {
   $('#main-body').empty();
@@ -106,10 +99,7 @@ function displayQuestionOneAtATime() {
   } 
 }
 
-
 $(document).on('click', '.answer-button', click);
-
-var answers = [];
 function click(event) {
   event.preventDefault();
   questionNumber++;
@@ -117,8 +107,6 @@ function click(event) {
   displayQuestionOneAtATime();
   filter();
 };
-
-
 
 function filter() {
 
@@ -173,7 +161,6 @@ function filter() {
   }
 
 }
-
 
 function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWithCats) {
   console.log(coordinates)
@@ -301,9 +288,6 @@ function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWit
     .catch(function (error) {
       console.log(error);
     });
-
-
-
 }
 
 if (questionNumber === questionsArray.length) {
