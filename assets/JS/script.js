@@ -4,7 +4,6 @@ var pf = new petfinder.Client({
 });
 
 //Geolocation functions
-//ADD CODE to alert "allow browser to know your location" just once
 var coordinates;
 
 $(window).on("load", function () {
@@ -33,10 +32,8 @@ function showPosition(position) {
 
 $(document).ready(function () {
 
-  // Check for click events on the navbar burger icon
   $(".navbar-burger").click(function () {
-
-    // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+  
     $(".navbar-burger").toggleClass("is-active");
     $(".navbar-menu").toggleClass("is-active");
 
@@ -51,10 +48,8 @@ function displayTitlePage() {
   $('#main-body').append(mainEl);
   $(document).on('click', '#start-button', displayQuestionOneAtATime);
 }
+
 displayTitlePage();
-
-
-
 
 // Questions 
 
@@ -62,22 +57,22 @@ var questionsArray = [
   {
     title: "What fits you best:",
     choices: ["Man looking for a woman", "Woman looking for a man", "Man looking for a man", "Woman looking for a woman"],
-    //object.animals.0.colors.gender[2] "male"
+    
   },
   {
     title: "What are your thoughts on children?",
     choices: ["Want someday", "Don't want", "Have and want more", "Have and don't want more"],
-    //object.animals.0.envirenment: {children: true, dogs: true, cats: null}
+    
   },
   {
     title: "What is your preferred style?",
     choices: ["Preppy", "Hipster", "Casual", "Trendy"],
-    //object.animals.0.photos.status: "adoptable"
+    
   },
   {
     title: "What is your preferred body type?",
     choices: ["Slender", "Big and beautiful", "About average", "Athletic and toned"],
-    //object.animals.0.attributes: house-trained: "true"
+    
   },
   {
     title: "What song fits you best?",
@@ -129,7 +124,7 @@ function click(event) {
 
 
 function filter() {
-  // ADD BACK-END CODE HERE that captures filter criteria
+  
   var answer1 = answers[0];
   var answer2 = answers[1];
   var answer3 = answers[2];
@@ -187,7 +182,7 @@ function filter() {
     buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWithCats);
     console.log(searchGender)
   }
-  // buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWithCats);
+  
 }
 
 
@@ -208,41 +203,29 @@ function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWit
       var i = 0;
       function displayMatch() {
 
-        // function storeInLocalStorage() {
-        //   localStorage.setItem("matches", JSON.stringify(acceptedDogIds));          
-        // }
-
-        function dogBreed() {
-          dogId = (response.data.animals[i].id);
-          var dogBreedPrimary = (response.data.animals[i].breeds.primary);
-          var dogBreedSecondary = (response.data.animals[i].breeds.secondary);
-          var dogBreedMixed = (response.data.animals[i].breeds.mixed);
-          if (dogBreedPrimary && dogBreedSecondary && dogBreedMixed === true) {
-            return "This cutiepie is a " + dogBreedPrimary + " and " + dogBreedSecondary + " mix";
-          }
-          if (dogBreedPrimary && dogBreedSecondary === null && dogBreedMixed === true) {
-            return "This cutiepie is mainly a " + dogBreedPrimary + " mix";
-          }
-
           function dogBreed() {
             dogId = (response.data.animals[i].id);
             var dogBreedPrimary = (response.data.animals[i].breeds.primary);
             var dogBreedSecondary = (response.data.animals[i].breeds.secondary);
             var dogBreedMixed = (response.data.animals[i].breeds.mixed);
-            if (dogBreedPrimary && dogBreedSecondary && dogBreedMixed === true) {
+            if (dogBreedPrimary && dogBreedSecondary && dogBreedMixed) {
               return "This cutiepie is a " + dogBreedPrimary + " and " + dogBreedSecondary + " mix";
             }
-            if (dogBreedPrimary && dogBreedSecondary === null && dogBreedMixed === true) {
+            if (dogBreedPrimary && !dogBreedSecondary && dogBreedMixed) {              
               return "This cutiepie is mainly a " + dogBreedPrimary + " mix";
             }
-            if (dogBreedPrimary && dogBreedSecondary === null && dogBreedMixed === false) {
+            if (dogBreedPrimary && !dogBreedSecondary && !dogBreedMixed) {              
               return "This cutiepie is a " + dogBreedPrimary;
             }
+            if (!dogBreedPrimary && !dogBreedSecondary && !dogBreedMixed) {
+              return "";
+            }
           }
-        }
+        var description = response.data.animals[i].description
+        if(!description) description ="";
 
         $('#match-main-display').remove();
-        var matchDisplay = $("<div id='match-main-display' class='container has-text-centered'><img id='match-img' src=" + response.data.animals[i].photos[0].medium + "> <h1 id='match-name' class='title is-3 has-text-white sriracha'>" + response.data.animals[i].name + "</h1><h2 id='match-dog-breed' class='subtitle is-4 has-text-white sriracha'>" + dogBreed() + "</h2><p id='match-description' class='is-size-5 has-text-white mali'>" + response.data.animals[i].description + "</p><button id='accept-match' class='button is-danger is-size-2 has-text-weight-bold sriracha'>Accept Match!!!</button><br/><button id='decline-match' class='button is-dark is-size-4 sriracha'>Decline Match</button></div>");
+        var matchDisplay = $("<div id='match-main-display' class='container has-text-centered'><img id='match-img' src=" + response.data.animals[i].photos[0].medium + "> <h1 id='match-name' class='title is-3 has-text-white sriracha'>" + response.data.animals[i].name + "</h1><h2 id='match-dog-breed' class='subtitle is-4 has-text-white sriracha'>" + dogBreed() + "</h2><p id='match-description' class='is-size-5 has-text-white mali'>" + description + "</p><button id='accept-match' class='button is-danger is-size-2 has-text-weight-bold sriracha'>Accept Match!!!</button><br/><button id='decline-match' class='button is-dark is-size-4 sriracha'>Decline Match</button></div>");
         $('#main-body').append(matchDisplay);
 
         var acceptBtnClicked;
@@ -251,7 +234,6 @@ function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWit
           if (acceptBtnClicked = true) {
             console.log(dogId);
             acceptedDogIds.push(dogId);
-            // storeInLocalStorage();
             localStorage.setItem("matches", JSON.stringify(acceptedDogIds))
           }
         });
@@ -271,6 +253,7 @@ function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWit
         setTimeout(displayMatch, 2000);
 
         $(".modal-content").html("")
+        
         //RUN GIPHY
 
         var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=LLdCkhWcP8YLeTTJPLSVyeqLFaiZlHiB&limit=10&rating=g&q="+term+"&SameSite=Secure";
@@ -306,7 +289,7 @@ function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWit
       }
     })
     .catch(function (error) {
-      // console.log(error);
+      console.log(error);
     });
 
 
@@ -317,9 +300,6 @@ if (questionNumber === questionsArray.length) {
   buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWithCats);
 
 }
-
-
-
 
 // Match History
 
