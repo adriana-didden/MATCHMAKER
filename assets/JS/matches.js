@@ -22,12 +22,12 @@ function getMatches () {
 
     for(var i = 0; i < matches.length; i++){
         pf.animal.show(matches[i]).then(function(response){
-            var matchDisplay = $("<div class='column changing-div is-one-quarter has-text-centered div-within-answer-div'><div class='column has-text-centered match-history'><img id='match-img' src="+ response.data.animal.photos[0].small +"> <h1 id='match-name' class='title is-3 has-text-white sriracha'>"+ response.data.animal.name +"</h1><p id='match-description' class='is-size-5 has-text-white mali'><a href="+ response.data.animal.url +" target='_blank'>Click to see this pet!</a></p></div></div>");
+            var matchDisplay = $("<div id='changing' class='column changing-div is-one-quarter has-text-centered div-within-answer-div'><div class='column has-text-centered match-history'><img id='match-img' src="+ response.data.animal.photos[0].small +"> <h1 id='match-name' class='title is-3 has-text-white sriracha'>"+ response.data.animal.name +"</h1><p id='match-description' class='is-size-5 has-text-white mali'><a href="+ response.data.animal.url +" target='_blank'>Click to see this pet!</a></p></div></div>");
             $('#answer-columns').append(matchDisplay);
             if (matches.length === 1){
               $('.changing-div').removeClass('is-one-quarter').addClass('is-one-third is-offset-one-third')
             }else if (matches.length === 2){
-              $('.changing-div').addClass('is-offset-one-quarter');
+              $('#changing').addClass('is-offset-one-quarter');
             }else if(matches.length === 3){
               $('.changing-div').removeClass('is-one-quarter').addClass('is-one-third')
             }
