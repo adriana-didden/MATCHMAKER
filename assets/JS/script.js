@@ -224,14 +224,23 @@ function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWit
         }
         
         $('#match-main-display').remove();
-        if (response.data.animals.length) {
+        if (response.data.animals.length && response.data.animals.length > i) {
+          console.log(response.data.animals.length, response.data.animals.length > i, response.data.animals.length, i)
           var description = response.data.animals[i].description
           if (!description) description = "";
-          var matchDisplay = $("<div id='match-main-display' class='container has-text-centered'><img id='match-img' src=" + response.data.animals[i].photos[0].medium + "> <h1 id='match-name' class='title is-3 has-text-white sriracha'>" + response.data.animals[i].name + "</h1><h2 id='match-dog-breed' class='subtitle is-4 has-text-white sriracha'>" + dogBreed() + "</h2><p id='match-description' class='is-size-5 has-text-white mali'>" + description + "</p><button id='accept-match' class='button is-danger is-size-2 has-text-weight-bold sriracha'>Accept Match!!!</button><br/><button id='decline-match' class='button is-dark is-size-4 sriracha'>Decline Match</button></div>");
+          var thePhoto =""
+           if(response.data.animals[i].photos.length){
+             console.log('here')
+             thePhoto = response.data.animals[i].photos[0].medium 
+           }
+          var matchDisplay = $("<div id='match-main-display' class='container has-text-centered'><img id='match-img' src=" + thePhoto+ "> <h1 id='match-name' class='title is-3 has-text-white sriracha'>" + response.data.animals[i].name + "</h1><h2 id='match-dog-breed' class='subtitle is-4 has-text-white sriracha'>" + dogBreed() + "</h2><p id='match-description' class='is-size-5 has-text-white mali'>" + description + "</p><button id='accept-match' class='button is-danger is-size-2 has-text-weight-bold sriracha'>Accept Match!!!</button><br/><button id='decline-match' class='button is-dark is-size-4 sriracha'>Decline Match</button></div>");
         }
-        else{ //ADRIANA, ADD YOUR CODE HERE TO POP UP MODAL
-          var matchDisplay = $("<div>")
-          matchDisplay.text("please try")
+        else { //ADRIANA, ADD YOUR CODE HERE TO POP UP MODAL
+          var reload = $(".modal")
+          reload.addClass("is-active");
+          reload.html()
+          $(".modal-content").append(reload);
+          console.log("RELOAD");
         }
         $('#main-body').append(matchDisplay);
 
@@ -247,6 +256,7 @@ function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWit
 
         i++;
       }
+
 
       displayMatch();
       $(document).on('click', '#decline-match', function () { getGif("dog+sad") });
