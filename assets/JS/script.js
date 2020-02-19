@@ -4,12 +4,16 @@ var pf = new petfinder.Client({
 });
 
 //Geolocation functions
+
+
 var coordinates;
 
 $(window).on("load", function () {
   if (!localStorage.getItem("getLocation")) {
     getLocation();
     localStorage.setItem("getLocation", "true");
+  }else{
+    coordinates = localStorage.getItem("coordinates")
   }
 })
 
@@ -22,10 +26,14 @@ function getLocation() {
   }
 }
 
+
+
 function showPosition(position) {
   var lat = position.coords.latitude;
   var lon = position.coords.longitude;
   coordinates = lat + "," + lon;
+  localStorage.setItem("coordinates", coordinates)
+  
 }
 
 // Navbar Hamburger 
@@ -180,7 +188,7 @@ function filter() {
 
   if (questionNumber === questionsArray.length) {
     buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWithCats);
-    console.log(searchGender)
+    // console.log(searchGender)
   }
   
 }
@@ -188,9 +196,11 @@ function filter() {
 
 function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWithCats) {
   console.log(coordinates)
-  var params = { type: "dog",  gender: searchGender, good_with_children: goodWithChildren, coat: coatType, size: dogSize, good_with_cats: goodWithCats }
+  var params = { type: "dog",  gender: searchGender, good_with_children: goodWithChildren, coat: coatType, size: dogSize, good_with_cats: goodWithCats}
+  console.log(params)
   if(coordinates){
     params.location = coordinates
+    console.log(params.location)
     params.distance = 100
   }
   pf.animal.search()
@@ -198,7 +208,7 @@ function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWit
       var responseArr = response.data;
       var acceptedDogIds = JSON.parse(localStorage.getItem("matches") || "[]");
 
-      console.log(response.data);
+      // console.log(response.data);
       var dogId;
       var i = 0;
       function displayMatch() {
