@@ -213,6 +213,7 @@ function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWit
         // }
 
         function dogBreed() {
+          console.log(i)
           dogId = (response.data.animals[i].id);
           var dogBreedPrimary = (response.data.animals[i].breeds.primary);
           var dogBreedSecondary = (response.data.animals[i].breeds.secondary);
