@@ -191,9 +191,18 @@ function filter() {
 }
 
 
-function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWithCats) {
+ffunction buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWithCats) {
+  console.log(coordinates)
+  var params = { type: "dog", location: coordinates, status: "adoptable", gender: searchGender, good_with_children: goodWithChildren, coat: coatType, size: dogSize, good_with_cats: goodWithCats }
+  console.log(params)
+  if (coordinates) {
+    params.location = coordinates
+    console.log(params.location)
+    params.distance = 100
+  }
 
-  pf.animal.search({ type: "dog", location: coordinates, distance: 100, gender: searchGender, good_with_children: goodWithChildren, coat: coatType, size: dogSize, good_with_cats: goodWithCats })
+  pf.animal.search(params)
+
     .then(function (response) {
       var responseArr = response.data;
       var acceptedDogIds = JSON.parse(localStorage.getItem("matches") || "[]");
@@ -203,41 +212,37 @@ function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWit
       var i = 0;
       function displayMatch() {
 
-        // function storeInLocalStorage() {
-        //   localStorage.setItem("matches", JSON.stringify(acceptedDogIds));          
-        // }
-
         function dogBreed() {
           dogId = (response.data.animals[i].id);
           var dogBreedPrimary = (response.data.animals[i].breeds.primary);
           var dogBreedSecondary = (response.data.animals[i].breeds.secondary);
           var dogBreedMixed = (response.data.animals[i].breeds.mixed);
-          if (dogBreedPrimary && dogBreedSecondary && dogBreedMixed === true) {
+          if (dogBreedPrimary && dogBreedSecondary && dogBreedMixed) {
             return "This cutiepie is a " + dogBreedPrimary + " and " + dogBreedSecondary + " mix";
           }
-          if (dogBreedPrimary && dogBreedSecondary === null && dogBreedMixed === true) {
+          if (dogBreedPrimary && !dogBreedSecondary && dogBreedMixed) {
             return "This cutiepie is mainly a " + dogBreedPrimary + " mix";
           }
-
-          function dogBreed() {
-            dogId = (response.data.animals[i].id);
-            var dogBreedPrimary = (response.data.animals[i].breeds.primary);
-            var dogBreedSecondary = (response.data.animals[i].breeds.secondary);
-            var dogBreedMixed = (response.data.animals[i].breeds.mixed);
-            if (dogBreedPrimary && dogBreedSecondary && dogBreedMixed === true) {
-              return "This cutiepie is a " + dogBreedPrimary + " and " + dogBreedSecondary + " mix";
-            }
-            if (dogBreedPrimary && dogBreedSecondary === null && dogBreedMixed === true) {
-              return "This cutiepie is mainly a " + dogBreedPrimary + " mix";
-            }
-            if (dogBreedPrimary && dogBreedSecondary === null && dogBreedMixed === false) {
-              return "This cutiepie is a " + dogBreedPrimary;
-            }
+          if (dogBreedPrimary && !dogBreedSecondary && !dogBreedMixed) {
+            return "This cutiepie is a " + dogBreedPrimary;
+          }
+          if (!dogBreedPrimary && !dogBreedSecondary && !dogBreedMixed) {
+            return "";
           }
         }
-
+        
         $('#match-main-display').remove();
-        var matchDisplay = $("<div id='match-main-display' class='container has-text-centered'><img id='match-img' src=" + response.data.animals[i].photos[0].medium + "> <h1 id='match-name' class='title is-3 has-text-white sriracha'>" + response.data.animals[i].name + "</h1><h2 id='match-dog-breed' class='subtitle is-4 has-text-white sriracha'>" + dogBreed() + "</h2><p id='match-description' class='is-size-5 has-text-white mali'>" + response.data.animals[i].description + "</p><button id='accept-match' class='button is-danger is-size-2 has-text-weight-bold sriracha'>Accept Match!!!</button><br/><button id='decline-match' class='button is-dark is-size-4 sriracha'>Decline Match</button></div>");
+        if (response.data.animals.length) {
+          var description = response.data.animals[i].description
+          if (!description) description = "";
+          var matchDisplay = $("<div id='match-main-display' class='container has-text-centered'><img id='match-img' src=" + response.data.animals[i].photos[0].medium + "> <h1 id='match-name' class='title is-3 has-text-white sriracha'>" + response.data.animals[i].name + "</h1><h2 id='match-dog-breed' class='subtitle is-4 has-text-white sriracha'>" + dogBreed() + "</h2><p id='match-description' class='is-size-5 has-text-white mali'>" + description + "</p><button id='accept-match' class='button is-danger is-size-2 has-text-weight-bold sriracha'>Accept Match!!!</button><br/><button id='decline-match' class='button is-dark is-size-4 sriracha'>Decline Match</button></div>");
+        }
+        else{ //ADRIANA, ADD YOUR CODE HERE TO POP UP MODAL
+          var matchDisplay = $("#reloadQuiz")
+          matchDisplay.addClass("is-active");
+          matchDisplay.html("<button>"+"please try again")
+
+        }
         $('#main-body').append(matchDisplay);
 
         var acceptBtnClicked;
@@ -246,14 +251,14 @@ function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWit
           if (acceptBtnClicked = true) {
             console.log(dogId);
             acceptedDogIds.push(dogId);
-            // storeInLocalStorage();
             localStorage.setItem("matches", JSON.stringify(acceptedDogIds))
           }
+          
         });
 
         i++;
-
       }
+
 
       displayMatch();
       $(document).on('click', '#decline-match', function () { getGif("dog+sad")});
