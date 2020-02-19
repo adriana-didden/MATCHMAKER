@@ -203,26 +203,6 @@ function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWit
       var i = 0;
       function displayMatch() {
 
-<<<<<<< HEAD
-        // function storeInLocalStorage() {
-        //   localStorage.setItem("matches", JSON.stringify(acceptedDogIds));          
-        // }
-
-        function dogBreed() {
-          console.log(i)
-          dogId = (response.data.animals[i].id);
-          var dogBreedPrimary = (response.data.animals[i].breeds.primary);
-          var dogBreedSecondary = (response.data.animals[i].breeds.secondary);
-          var dogBreedMixed = (response.data.animals[i].breeds.mixed);
-          if (dogBreedPrimary && dogBreedSecondary && dogBreedMixed === true) {
-            return "This cutiepie is a " + dogBreedPrimary + " and " + dogBreedSecondary + " mix";
-          }
-          if (dogBreedPrimary && dogBreedSecondary === null && dogBreedMixed === true) {
-            return "This cutiepie is mainly a " + dogBreedPrimary + " mix";
-          }
-
-=======
->>>>>>> 32876c811f6681aecc62a54a11f7641a3d4ef78d
           function dogBreed() {
             dogId = (response.data.animals[i].id);
             var dogBreedPrimary = (response.data.animals[i].breeds.primary);
