@@ -7,6 +7,8 @@
 
 * [The URL of the functional, deployed application.](https://adriana-didden.github.io/Project1/) Link will change name!
 
+![Screenshot of Home Screen](.\assets\img\matchMaker.png)
+
 ![Screenshot of Match History](.\assets\img\matchHistory.png)
 
 ![Screenshot of Deveolper Contact Info](.\assets\img\developerContactInfo.png)
