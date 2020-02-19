@@ -164,10 +164,11 @@ function filter() {
   } 
   else if (answer3 === "Casual") {
     coatType = "short";
-  } else if (answer3 === "Trendy") {
+  } 
+  else if (answer3 === "Trendy") {
     coatType = "long,short";
-  }
-
+  } 
+  
   //["Slender", "Big and beautiful" xlarge, "About average" large, "Athletic and toned" medium: small, medium, large, xlarge]
   if (answer4 === "Slender") {
     dogSize = "small";
