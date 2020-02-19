@@ -49,8 +49,8 @@ $(document).ready(function () {
 // Title Page
 
 function displayTitlePage() {
-  var mainEl = $("<div class='container has-text-centered' id='title-page-div'><h1 id='welcome-to-matchmaker' class='title is-1 has-text-white sriracha'>Welcome to MATCHMAKER</h1><hr/><p id='title-page-subtext' class='subtitle has-text-white mali'>Do you long-for companionship? Find it here at MATCHMAKER, where we connect you with your future soulmate based on our 5 minute questionaire. Press the START button below to begin your odyssey of love.</p><button class='button is-danger is-size-2 has-text-weight-bold sriracha' id='start-button'>START</button></div>")
-  $('#main-body').append(mainEl);
+  var mainEl = $("<div class='column is-half has-text-centered'><div class='container has-text-centered' id='title-page-div'><h1 id='welcome-to-matchmaker' class='title is-1 has-text-white sriracha'>Welcome to MATCHMAKER</h1><hr/><p id='title-page-subtext' class='subtitle has-text-white mali'>Do you long-for companionship? Find it here at MATCHMAKER, where we connect you with your future soulmate based on our 5 question quiz. Press the START button below to begin your odyssey of love.</p><button class='button is-danger is-size-2 has-text-weight-bold sriracha' id='start-button'>START</button></div></div>")
+  $('.columns').prepend(mainEl);
   $(document).on('click', '#start-button', displayQuestionOneAtATime);
 }
 
