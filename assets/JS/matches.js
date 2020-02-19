@@ -36,32 +36,7 @@ function getMatches () {
             // console.log(response)
             // console.log(response.data.animal.url)
             var matchDisplay = $("<div class='column is-one-quarter has-text-centered div-within-answer-div'><div class='column has-text-centered match-history'><img id='match-img' src="+ response.data.animal.photos[0].small +"> <h1 id='match-name' class='title is-3 has-text-white sriracha'>"+ response.data.animal.name +"</h1><p id='match-description' class='is-size-5 has-text-white mali'><a href="+ response.data.animal.url +" target='_blank'>Click to see this pet!</a></p></div></div>");
-            
-            
             $('#answer-columns').append(matchDisplay);
-
-
-
-        // var photos = response.data.animals.photos[0]
-        // // var photosLink = "https://unpkg.com/@petfinder/petfinder-js/dist/petfinder.min.js" + photos + pf;
-        
-        // var card = $("<div class='card'>")
-        // var cardBody = $("<div class='card-body'>")
-        // console.log(cardBody)
-        // var cardPhoto = $("<img src='" + photos + "'>")
-        // var cardName = $("<p class='card-Name'>")
-        // var cardBreed = $("<p class='cardBreed'>")
-        // var cardContactLink = $("<a href=>")
-                
-        
-        
-        // cardPhoto.append(cardPhoto)
-        // cardName.text(response.animals.name)
-        // cardBreed.text(response.animals.breeds)
-        // cardContactLink.text("Click here for contact information:" + response.animals.contact)
-        // cardBody.append(cardPhoto, cardName, cardBreed, cardContactLink)
-        // card.append(cardBody)
-        // $(".cardHolder").prepend(card)
         })
     }
 }
