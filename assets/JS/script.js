@@ -236,9 +236,11 @@ function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWit
           var matchDisplay = $("<div id='match-main-display' class='container has-text-centered'><img id='match-img' src=" + thePhoto+ "> <h1 id='match-name' class='title is-3 has-text-white sriracha'>" + response.data.animals[i].name + "</h1><h2 id='match-dog-breed' class='subtitle is-4 has-text-white sriracha'>" + dogBreed() + "</h2><p id='match-description' class='is-size-5 has-text-white mali'>" + description + "</p><button id='accept-match' class='button is-danger is-size-2 has-text-weight-bold sriracha'>Accept Match!!!</button><br/><button id='decline-match' class='button is-dark is-size-4 sriracha'>Decline Match</button></div>");
         }
         else { //ADRIANA, ADD YOUR CODE HERE TO POP UP MODAL
+          var link= "https://media.giphy.com/media/l3978LHbIV5GAzRPG/giphy-downsized.gif"
           var reload = $(".modal")
           reload.addClass("is-active");
-          reload.html()
+          reload.html("<div><p>"+"<a class='has-text-info has-text-weight-bold'href='index.html'"+">You're looking for a Unicorn please try again!</a></p>"+"<img src='"+ link  +"'/></div>");
+          
           $(".modal-content").append(reload);
           console.log("RELOAD");
         }
