@@ -163,12 +163,11 @@ function filter() {
 }
 
 function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWithCats) {
-  console.log(coordinates)
+ 
   var params = { type: "dog", location: coordinates, status: "adoptable", gender: searchGender, good_with_children: goodWithChildren, coat: coatType, size: dogSize, good_with_cats: goodWithCats }
-  console.log(params)
+  
   if (coordinates) {
-    params.location = coordinates
-    console.log(params.location)
+    params.location = coordinates    
     params.distance = 100
   }
 
@@ -177,8 +176,7 @@ function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWit
     .then(function (response) {
       var responseArr = response.data;
       var acceptedDogIds = JSON.parse(localStorage.getItem("matches") || "[]");
-
-      console.log(response.data);
+      console.log(response)
       var dogId;
       var i = 0;
       function displayMatch() {
@@ -203,27 +201,34 @@ function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWit
         }
         
         $('#match-main-display').remove();
-        if (response.data.animals.length && response.data.animals.length > i) {
-          console.log(response.data.animals.length, response.data.animals.length > i, response.data.animals.length, i)
+        if (response.data.animals.length && response.data.animals.length > i) {  
           var description = response.data.animals[i].description
           if (!description) description = "";
           var thePhoto =""
            if(response.data.animals[i].photos.length){
-             console.log('here')
+             
              thePhoto = response.data.animals[i].photos[0].medium 
            }
           var matchDisplay = $("<div id='match-main-display' class='container has-text-centered'><img id='match-img' src=" + thePhoto+ "> <h1 id='match-name' class='title is-3 has-text-white sriracha'>" + response.data.animals[i].name + "</h1><h2 id='match-dog-breed' class='subtitle is-4 has-text-white sriracha'>" + dogBreed() + "</h2><p id='match-description' class='is-size-5 has-text-white mali'>" + description + "</p><button id='accept-match' class='button is-danger is-size-2 has-text-weight-bold sriracha'>Accept Match!!!</button><br/><button id='decline-match' class='button is-dark is-size-4 sriracha'>Decline Match</button></div>");
+          $('#main-body').append(matchDisplay);
+        }
+        else if (response.data.animals.length > 1 && response.data.animals.length < 5) { 
+          const link= "https://media.giphy.com/media/aFTt8wvDtqKCQ/giphy-downsized.gif"
+          const reload = $("<div>")
+          reload.html("<div><p>"+"<a class='has-text-info has-text-weight-bold'href='index.html'"+">We only found a few options for you. Please try again!</a></p>"+"<img src='"+ link  +"'alt='animation of a illuminated unicorn surrounded by shades of blue '/></div>");
+          $(".modal-content").html("")
+          $(".modal-content").append(reload);
+          $(".modal").addClass("is-active");
+          
         }
         else { 
-          var link= "https://media.giphy.com/media/l3978LHbIV5GAzRPG/giphy-downsized.gif"
-          var reload = $(".modal")
-          reload.addClass("is-active");
+          const link= "https://media.giphy.com/media/l3978LHbIV5GAzRPG/giphy-downsized.gif"
+          const reload = $("<div>")
           reload.html("<div><p>"+"<a class='has-text-info has-text-weight-bold'href='index.html'"+">You're looking for a Unicorn please try again!</a></p>"+"<img src='"+ link  +"'alt='animation of a illuminated unicorn surrounded by shades of blue '/></div>");
-          
+          $(".modal-content").html("")
           $(".modal-content").append(reload);
-          console.log("RELOAD");
+          $(".modal").addClass("is-active");
         }
-        $('#main-body').append(matchDisplay);
 
         var acceptBtnClicked;
 
@@ -256,18 +261,18 @@ function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWit
         var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=LLdCkhWcP8YLeTTJPLSVyeqLFaiZlHiB&limit=10&rating=g&q=" + term + "&SameSite=Secure";
 
         $(".modal").addClass("is-active");
-        console.log(term, queryURL)
+        
         $.ajax({
           url: queryURL,
           method: "GET"
         }).then(function (giphy) {
           var arrGif = giphy.data
           var picked = Math.floor(Math.random() * arrGif.length)
-          console.log(picked, arrGif.length)
+          
           var theGIF = $("<img>")
           theGIF.attr("src", arrGif[picked].images.original.url)
           $(".modal-content").append(theGIF);
-          console.log(giphy)
+          
 
         });
         var modal = document.getElementsByClassName("modal is-active");
@@ -277,11 +282,7 @@ function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWit
             modal.removeClass("is-active")
           }
         };
-        $(".modal-background").click(() => closeModal())
-        $(".modal-close").click(() => closeModal())
-        const closeModal = () => {
-          $(".modal").removeClass("is-active")
-        }
+    
 
       }
     })
@@ -294,5 +295,9 @@ if (questionNumber === questionsArray.length) {
   buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWithCats);
 
 }
-
+$(".modal-background").click(() => closeModal())
+$(".modal-close").click(() => closeModal())
+const closeModal = () => {
+  $(".modal").removeClass("is-active")
+}
 
