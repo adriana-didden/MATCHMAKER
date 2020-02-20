@@ -35,6 +35,7 @@ var questionNumber = 0;
 var answers = [];
 
 //Geolocation functions
+
 $(window).on("load", function () {
   if (!localStorage.getItem("getLocation")) {
     getLocation();
@@ -77,11 +78,9 @@ $(document).ready(function () {
 
 function displayTitlePage() {
   var mainEl = $("<div class='column has-text-centered'><div class='container has-text-centered' id='title-page-div'><h1 id='welcome-to-matchmaker' class='title has-text-white sriracha'>Welcome to MATCHMAKER</h1><hr/><p id='title-page-subtext' class='subtitle has-text-white mali'>Do you long-for companionship? Find it here at MATCHMAKER, where we connect you with your future soulmate based on our 5 question quiz. Press the START button below to begin your odyssey of love.</p><button class='button is-danger is-size-2 has-text-weight-bold sriracha' id='start-button'>START</button></div></div>")
-  console.log($(window).width())
   $('.columns').prepend(mainEl);
   if ($(window).width() > 1215){
     $('#welcome-to-matchmaker').addClass("is-1");
-    console.log('workin')
   }
   $(document).on('click', '#start-button', displayQuestionOneAtATime);
 }
@@ -181,7 +180,6 @@ function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWit
     .then(function (response) {
       var responseArr = response.data;
       var acceptedDogIds = JSON.parse(localStorage.getItem("matches") || "[]");
-      console.log(response)
       var dogId;
       var i = 0;
       function displayMatch() {
@@ -216,6 +214,9 @@ function buildRequest(searchGender, goodWithChildren, coatType, dogSize, goodWit
            }
           var matchDisplay = $("<div id='match-main-display' class='container has-text-centered'><img id='match-img' src=" + thePhoto+ "> <h1 id='match-name' class='title is-3 has-text-white sriracha'>" + response.data.animals[i].name + "</h1><h2 id='match-dog-breed' class='subtitle is-4 has-text-white sriracha'>" + dogBreed() + "</h2><p id='match-description' class='is-size-5 has-text-white mali'>" + description + "</p><button id='accept-match' class='button is-danger is-size-2 has-text-weight-bold sriracha'>Accept Match!!!</button><br/><button id='decline-match' class='button is-dark is-size-4 sriracha'>Decline Match</button></div>");
           $('#main-body').append(matchDisplay);
+          if ($(window).width() < 405){
+            $('#accept-match').removeClass("is-size-2").addClass("is-size-4");
+          }
         }
         else if (response.data.animals.length > 1 && response.data.animals.length < 5) { 
           const link= "https://media.giphy.com/media/aFTt8wvDtqKCQ/giphy-downsized.gif"
@@ -305,4 +306,3 @@ $(".modal-close").click(() => closeModal())
 const closeModal = () => {
   $(".modal").removeClass("is-active")
 }
-
