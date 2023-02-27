@@ -10,8 +10,8 @@ $(document).ready(function () {
 
 
 var pf = new petfinder.Client({
-    apiKey: "rfKtqLNMX2qtPkyR7cDRNWJgJwJ3kxAyzoJzYFwvt1S7IB3Hnb",
-    secret: "NGBUpIOll0vatwymXSITahluWEoK6W0hWyyBSvCN"
+    apiKey: "F6kVWxFKiDfUGr4UjD0ODb1pNpF0C8b1RF6FYXYKAGsE70Vp4X",
+    secret: "lwjSHcSr0O86eC9zX6Skm7PaMqJAfHNBIN9CwWSl"
   });
 
 function getMatches () {
